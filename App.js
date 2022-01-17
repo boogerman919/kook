@@ -51,6 +51,9 @@ const App = () => {
   // show menu or not
   const [showMenu, setShowMenu] = useState(false);
 
+  // record ride_id
+  const [ride_id, setRide_id] = useState(0);
+
   // Things that will happen after pressing the main button
   const buttonReaction = currentStage => {
     switch (currentStage) {
@@ -64,11 +67,7 @@ const App = () => {
         startSession();
         break;
       case 'started':
-        setHeightRatio(2);
-        BackgroundTimer.stopBackgroundTimer();
-        setButtonOpacity(0.2);
-        setButtonColor('#00EBB6');
-        setCurrentStage('returned');
+        endSession();
         break;
       case 'returned':
         setHeightRatio(1.22);
@@ -102,7 +101,7 @@ const App = () => {
     return h + m + s;
   };
 
-  async function startSession() {
+  const startSession = async () => {
     let res = await fetch('http://127.0.0.1:5000/start_ride', {
       method: 'POST',
       headers: {
@@ -111,7 +110,7 @@ const App = () => {
       body: JSON.stringify({user_id: USER_ID, board_id: BOARD_ID}),
     });
     let rideInfo = await res.json();
-    console.log(rideInfo);
+    setRide_id(rideInfo.ride_id);
     let startTime = new Date(rideInfo.start_time).getTime();
     let timeNow = new Date().getTime();
     setStopwatchTime(Math.floor((timeNow - startTime) / 1000));
@@ -124,7 +123,26 @@ const App = () => {
     BackgroundTimer.runBackgroundTimer(() => {
       setStopwatchTime(prevStopwatchTime => prevStopwatchTime + 1);
     }, 1000);
-  }
+  };
+
+  const endSession = async () => {
+    let res = await fetch('http://127.0.0.1:5000/end_ride', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ride_id: ride_id}),
+    });
+    let result = await res.json();
+    let startTime = new Date(result.start_time).getTime();
+    let endTime = new Date(result.end_time).getTime();
+    setStopwatchTime(Math.floor((endTime - startTime) / 1000));
+    setHeightRatio(2);
+    BackgroundTimer.stopBackgroundTimer();
+    setButtonOpacity(0.2);
+    setButtonColor('#00EBB6');
+    setCurrentStage('returned');
+  };
 
   const toggleMenu = () => {
     if (showMenu) setShowMenu(false);
