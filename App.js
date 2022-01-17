@@ -17,6 +17,9 @@ const window = Dimensions.get('window');
 var rem = window.width / 390;
 EStyleSheet.build({$rem: rem});
 
+const USER_ID = 1;
+const BOARD_ID = 1;
+
 const App = () => {
   // stages: ['landing', 'nfc', 'started', 'returned', 'charge']
   const [currentStage, setCurrentStage] = useState('landing');
@@ -58,7 +61,7 @@ const App = () => {
         setCurrentStage('nfc');
         break;
       case 'nfc':
-        startSession(1);
+        startSession();
         break;
       case 'started':
         setHeightRatio(2);
@@ -99,22 +102,19 @@ const App = () => {
     return h + m + s;
   };
 
-  async function getRideInfo(user_id) {
-    let res = await fetch(`http://127.0.0.1:5000/starttime/${user_id}`);
-    let result = await res.json();
-    console.log(result);
-    return result;
-  }
-
-  async function startSession(user_id) {
-    let res = await fetch(`http://127.0.0.1:5000/starttime/${user_id}`);
+  async function startSession() {
+    let res = await fetch('http://127.0.0.1:5000/start_ride', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({user_id: USER_ID, board_id: BOARD_ID}),
+    });
     let rideInfo = await res.json();
-    let startTime = new Date(
-      rideInfo.start_time.replace(' ', 'T') + 'Z',
-    ).getTime();
+    console.log(rideInfo);
+    let startTime = new Date(rideInfo.start_time).getTime();
     let timeNow = new Date().getTime();
     setStopwatchTime(Math.floor((timeNow - startTime) / 1000));
-    console.log(Math.floor((timeNow - startTime) / 1000));
     setHeightRatio(2);
     setButtonColor('#D2D2D2');
     setButtonText('End Session');
