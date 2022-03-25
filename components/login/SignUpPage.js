@@ -54,7 +54,7 @@ const styles = EStyleSheet.create({
   },
   title: {
     color: 'black',
-    fontSize: '45rem',
+    fontSize: '35rem',
     fontFamily: 'Montserrat-Bold',
     left: '55rem',
   },
