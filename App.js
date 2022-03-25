@@ -98,7 +98,15 @@ const App = () => {
           }}>
           {state.userToken == null ? (
             <>
-              <Stack.Screen name="Login" component={LoginPage} />
+              <Stack.Screen
+                name="Login"
+                component={LoginPage}
+                options={{
+                  // When logging out, a pop animation feels intuitive
+                  // You can remove this if you want the default 'push' animation
+                  animationTypeForReplace: state.isSignout ? 'pop' : 'push',
+                }}
+              />
               <Stack.Screen name="SignUp" component={SignUpPage} />
               <Stack.Screen name="SetPassword" component={SetPasswordPage} />
             </>

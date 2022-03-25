@@ -9,7 +9,6 @@ const window = Dimensions.get('window');
 EStyleSheet.build({$rem: window.width / 390});
 
 const Menu = ({showMenu, toggleMenu}) => {
-
   const {signOut} = React.useContext(AuthContext);
 
   return (
@@ -52,7 +51,10 @@ const Menu = ({showMenu, toggleMenu}) => {
         </TouchableOpacity>
         <TouchableOpacity style={styles.logOutBtn}>
           <Text
-            onPress={() => signOut()}
+            onPress={() => {
+              toggleMenu();
+              signOut();
+            }}
             style={styles.logOutText}>
             Log out
           </Text>
