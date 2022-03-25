@@ -1,6 +1,13 @@
 'use strict';
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Dimensions, Animated, Text, TouchableOpacity, TextInput} from 'react-native';
+import {
+  View,
+  Dimensions,
+  Animated,
+  Text,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const window = Dimensions.get('window');
@@ -16,6 +23,10 @@ const LoginPage = () => {
       </View>
       <View style={styles.textContainer}>
         <Text style={styles.text}>email / phone number</Text>
+      </View>
+      <TextInput style={styles.textInput}></TextInput>
+      <View style={styles.textContainer}>
+        <Text style={styles.text}>password</Text>
       </View>
       <TextInput style={styles.textInput}></TextInput>
       <TouchableOpacity style={styles.btn}>
@@ -37,8 +48,8 @@ const styles = EStyleSheet.create({
   },
   titleContainer: {
     alignItems: 'center',
-    marginTop: '200rem',
-    marginBottom: '80rem',
+    marginTop: '150rem',
+    marginBottom: '45rem',
   },
   title: {
     color: '#05F2BC',
@@ -63,7 +74,8 @@ const styles = EStyleSheet.create({
     borderWidth: '2rem',
     width: '280rem',
     height: '50rem',
-    marginBottom: '50rem',
+    marginBottom: '22rem',
+    borderRadius: '2rem',
   },
   btn: {
     width: '240rem',
@@ -75,6 +87,7 @@ const styles = EStyleSheet.create({
     borderRadius: '8rem',
     alignItems: 'center',
     justifyContent: 'center',
+    marginTop: '35rem',
     marginBottom: '25rem',
   },
   btnText: {
