@@ -1,5 +1,5 @@
 'use strict';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useContext} from 'react';
 import {
   View,
   Dimensions,
@@ -8,6 +8,7 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
+import {AuthContext} from './context';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 const window = Dimensions.get('window');
@@ -16,6 +17,11 @@ var rem = window.width / 390;
 EStyleSheet.build({$rem: rem});
 
 const LoginPage = () => {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+
+  const {signIn} = useContext(AuthContext);
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -24,13 +30,22 @@ const LoginPage = () => {
       <View style={styles.textContainer}>
         <Text style={styles.text}>email / phone number</Text>
       </View>
-      <TextInput style={styles.textInput}></TextInput>
+      <TextInput
+        value={username}
+        onChangeText={setUsername}
+        style={styles.textInput}></TextInput>
       <View style={styles.textContainer}>
         <Text style={styles.text}>password</Text>
       </View>
-      <TextInput style={styles.textInput}></TextInput>
-      <TouchableOpacity style={styles.btn}>
-        <Text style={styles.btnText}>Next</Text>
+      <TextInput
+        value={password}
+        onChangeText={setPassword}
+        secureTextEntry
+        style={styles.textInput}></TextInput>
+      <TouchableOpacity
+        onPress={() => signIn({username, password})}
+        style={styles.btn}>
+        <Text style={styles.btnText}>Sign In</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.signUpBtn}>
         <Text style={styles.signUpTxt}>Sign up</Text>
