@@ -15,7 +15,9 @@ const window = Dimensions.get('window');
 var rem = window.width / 390;
 EStyleSheet.build({$rem: rem});
 
-const SignUpPage = () => {
+const SignUpPage = ({navigation}) => {
+  const [username, setUsername] = useState('');
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -24,13 +26,20 @@ const SignUpPage = () => {
       <View style={styles.textContainer}>
         <Text style={styles.text}>email / phone number</Text>
       </View>
-      <TextInput style={styles.textInput}></TextInput>
+      <TextInput
+        value={username}
+        onChangeText={setUsername}
+        style={styles.textInput}></TextInput>
       <View style={styles.textContainer}>
         <Text style={styles.text}>enter verification code</Text>
       </View>
       <View style={styles.verificationBox}>
         <TextInput style={styles.textInput}></TextInput>
-        <TouchableOpacity style={styles.btn}>
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('SetPassword', {username: {username}})
+          }
+          style={styles.btn}>
           <Text style={styles.btnText}>Send{'\n'}Code</Text>
         </TouchableOpacity>
       </View>

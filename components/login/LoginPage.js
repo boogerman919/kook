@@ -16,7 +16,7 @@ const window = Dimensions.get('window');
 var rem = window.width / 390;
 EStyleSheet.build({$rem: rem});
 
-const LoginPage = () => {
+const LoginPage = ({navigation}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
@@ -47,7 +47,9 @@ const LoginPage = () => {
         style={styles.btn}>
         <Text style={styles.btnText}>Sign In</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.signUpBtn}>
+      <TouchableOpacity
+        onPress={() => navigation.navigate('SignUp')}
+        style={styles.signUpBtn}>
         <Text style={styles.signUpTxt}>Sign up</Text>
       </TouchableOpacity>
     </View>

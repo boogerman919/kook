@@ -1,5 +1,5 @@
 'use strict';
-import React, {useState, useEffect, useRef, useReducer} from 'react';
+import React, {useState, useEffect, useRef, useReducer, useMemo} from 'react';
 import {View, Dimensions, Animated, Text, TouchableOpacity} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {parse} from '@babel/core';
@@ -44,7 +44,7 @@ const App = () => {
     },
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       let userToken;
@@ -66,7 +66,7 @@ const App = () => {
     bootstrapAsync();
   }, []);
 
-  const authContext = React.useMemo(
+  const authContext = useMemo(
     () => ({
       signIn: async data => {
         // In a production app, we need to send some data (usually username, password) to server and get a token

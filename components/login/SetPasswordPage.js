@@ -1,5 +1,5 @@
 'use strict';
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect, useRef, useContext} from 'react';
 import {
   View,
   Dimensions,
@@ -9,13 +9,19 @@ import {
   TextInput,
 } from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import {AuthContext} from './context';
 
 const window = Dimensions.get('window');
 
 var rem = window.width / 390;
 EStyleSheet.build({$rem: rem});
 
-const SetPasswordPage = () => {
+const SetPasswordPage = ({route, navigation}) => {
+  const {signUp} = useContext(AuthContext);
+
+  const {username} = route.params;
+  const [password, setPassword] = useState('');
+
   return (
     <View style={styles.container}>
       <View style={styles.titleContainer}>
@@ -24,12 +30,17 @@ const SetPasswordPage = () => {
       <View style={styles.textContainer}>
         <Text style={styles.text}>enter password</Text>
       </View>
-      <TextInput style={styles.textInput}></TextInput>
+      <TextInput
+        value={password}
+        onChangeText={setPassword}
+        style={styles.textInput}></TextInput>
       <View style={styles.textContainer}>
         <Text style={styles.text}>confirm password</Text>
       </View>
       <TextInput style={styles.textInput}></TextInput>
-      <TouchableOpacity style={styles.btn}>
+      <TouchableOpacity
+        onPress={() => signUp({username, password})}
+        style={styles.btn}>
         <Text style={styles.btnText}>Done</Text>
       </TouchableOpacity>
     </View>
