@@ -2,12 +2,16 @@ import React from 'react';
 import {View, Text, TouchableOpacity, Dimensions} from 'react-native';
 import Modal from 'react-native-modal';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import {AuthContext} from './login/context';
 
 const window = Dimensions.get('window');
 
 EStyleSheet.build({$rem: window.width / 390});
 
 const Menu = ({showMenu, toggleMenu}) => {
+
+  const {signOut} = React.useContext(AuthContext);
+
   return (
     <Modal
       style={{margin: 0}}
@@ -46,6 +50,13 @@ const Menu = ({showMenu, toggleMenu}) => {
         <TouchableOpacity style={styles.itemBtn}>
           <Text style={styles.itemText}>Legal</Text>
         </TouchableOpacity>
+        <TouchableOpacity style={styles.logOutBtn}>
+          <Text
+            onPress={() => signOut()}
+            style={styles.logOutText}>
+            Log out
+          </Text>
+        </TouchableOpacity>
       </View>
     </Modal>
   );
@@ -63,9 +74,10 @@ const styles = EStyleSheet.create({
     paddingLeft: '25rem',
     paddingTop: '88rem',
     alignItems: 'flex-start',
+    justifyContent: 'space-between',
   },
   accNameBtn: {
-    marginBottom: '40rem',
+    marginBottom: '50rem',
   },
   accNameText: {
     color: 'black',
@@ -73,11 +85,20 @@ const styles = EStyleSheet.create({
     fontFamily: 'Montserrat-SemiBold',
   },
   itemBtn: {
-    marginBottom: '22rem',
+    marginBottom: '25rem',
   },
   itemText: {
     color: 'black',
     fontSize: '20rem',
+    fontFamily: 'Montserrat-Medium',
+  },
+  logOutBtn: {
+    marginTop: '300rem',
+    marginBottom: '60rem',
+  },
+  logOutText: {
+    color: '#6A6A6A',
+    fontSize: '18rem',
     fontFamily: 'Montserrat-Medium',
   },
 });
