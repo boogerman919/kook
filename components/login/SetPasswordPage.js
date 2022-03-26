@@ -40,11 +40,12 @@ const SetPasswordPage = ({route, navigation}) => {
       <TextInput
         value={password}
         onChangeText={setPassword}
+        secureTextEntry
         style={styles.textInput}></TextInput>
       <View style={styles.textContainer}>
         <Text style={styles.text}>confirm password</Text>
       </View>
-      <TextInput style={styles.textInput}></TextInput>
+      <TextInput secureTextEntry style={styles.textInput}></TextInput>
       <TouchableOpacity
         onPress={() => signUp({username, password})}
         style={styles.btn}>
@@ -107,9 +108,11 @@ const styles = EStyleSheet.create({
     width: '280rem',
     height: '50rem',
     borderRadius: '2rem',
+    fontFamily: 'Montserrat-Medium',
+    paddingLeft: '10rem',
   },
   btn: {
-    width: '240rem',
+    width: '220rem',
     aspectRatio: 4,
     backgroundColor: '#00EBB6',
     shadowOffset: {width: 0, height: '-2rem'},
@@ -123,7 +126,7 @@ const styles = EStyleSheet.create({
   },
   btnText: {
     color: '#FFFFFF',
-    fontSize: '28rem',
+    fontSize: '26rem',
     fontFamily: 'Montserrat-SemiBold',
   },
 });

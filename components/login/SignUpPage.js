@@ -67,7 +67,7 @@ const styles = EStyleSheet.create({
   backBtn: {
     alignSelf: 'stretch',
     marginTop: '45rem',
-    left: '30rem'
+    left: '30rem',
   },
   backBtnText: {
     color: 'black',
@@ -107,6 +107,8 @@ const styles = EStyleSheet.create({
     width: '280rem',
     height: '50rem',
     borderRadius: '2rem',
+    fontFamily: 'Montserrat-Medium',
+    paddingLeft: '10rem',
   },
   btn: {
     height: '50rem',

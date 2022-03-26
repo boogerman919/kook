@@ -93,9 +93,11 @@ const styles = EStyleSheet.create({
     width: '280rem',
     height: '50rem',
     borderRadius: '2rem',
+    fontFamily: 'Montserrat-Medium',
+    paddingLeft: '10rem'
   },
   btn: {
-    width: '240rem',
+    width: '220rem',
     aspectRatio: 4,
     backgroundColor: '#00EBB6',
     shadowOffset: {width: 0, height: '-2rem'},
@@ -109,7 +111,7 @@ const styles = EStyleSheet.create({
   },
   btnText: {
     color: '#FFFFFF',
-    fontSize: '28rem',
+    fontSize: '26rem',
     fontFamily: 'Montserrat-SemiBold',
   },
   signUpBtn: {
