@@ -24,6 +24,13 @@ const SetPasswordPage = ({route, navigation}) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.backBtnContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.backBtn}>
+          <Text style={styles.backBtnText}>Back</Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Set Password</Text>
       </View>
@@ -54,12 +61,25 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#FFFFFF',
   },
+  backBtnContainer: {
+    alignSelf: 'stretch',
+  },
+  backBtn: {
+    alignSelf: 'stretch',
+    marginTop: '45rem',
+    left: '30rem',
+  },
+  backBtnText: {
+    color: 'black',
+    fontSize: '20rem',
+    fontFamily: 'Montserrat-SemiBold',
+  },
   titleContainer: {
     alignSelf: 'stretch',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    marginTop: '160rem',
-    marginBottom: '50rem',
+    marginTop: '100rem',
+    marginBottom: '40rem',
   },
   title: {
     color: 'black',
@@ -73,6 +93,7 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     marginBottom: '10rem',
+    marginTop: '20rem',
   },
   text: {
     color: 'black',
@@ -85,7 +106,6 @@ const styles = EStyleSheet.create({
     borderWidth: '2rem',
     width: '280rem',
     height: '50rem',
-    marginBottom: '20rem',
     borderRadius: '2rem',
   },
   btn: {

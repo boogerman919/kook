@@ -66,7 +66,7 @@ const styles = EStyleSheet.create({
   titleContainer: {
     alignItems: 'center',
     marginTop: '150rem',
-    marginBottom: '45rem',
+    marginBottom: '20rem',
   },
   title: {
     color: '#05F2BC',
@@ -78,7 +78,8 @@ const styles = EStyleSheet.create({
     left: '63rem',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    marginBottom: '15rem',
+    marginTop: '20rem',
+    marginBottom: '10rem',
   },
   text: {
     color: 'black',
@@ -91,7 +92,6 @@ const styles = EStyleSheet.create({
     borderWidth: '2rem',
     width: '280rem',
     height: '50rem',
-    marginBottom: '22rem',
     borderRadius: '2rem',
   },
   btn: {

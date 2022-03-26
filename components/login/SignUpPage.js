@@ -20,6 +20,13 @@ const SignUpPage = ({navigation}) => {
 
   return (
     <View style={styles.container}>
+      <View style={styles.backBtnContainer}>
+        <TouchableOpacity
+          onPress={() => navigation.goBack()}
+          style={styles.backBtn}>
+          <Text style={styles.backBtnText}>Back</Text>
+        </TouchableOpacity>
+      </View>
       <View style={styles.titleContainer}>
         <Text style={styles.title}>Sign Up</Text>
       </View>
@@ -54,12 +61,25 @@ const styles = EStyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#FFFFFF',
   },
+  backBtnContainer: {
+    alignSelf: 'stretch',
+  },
+  backBtn: {
+    alignSelf: 'stretch',
+    marginTop: '45rem',
+    left: '30rem'
+  },
+  backBtnText: {
+    color: 'black',
+    fontSize: '20rem',
+    fontFamily: 'Montserrat-SemiBold',
+  },
   titleContainer: {
     alignSelf: 'stretch',
     justifyContent: 'space-between',
     flexDirection: 'row',
-    marginTop: '200rem',
-    marginBottom: '50rem',
+    marginTop: '100rem',
+    marginBottom: '40rem',
   },
   title: {
     color: 'black',
@@ -107,7 +127,7 @@ const styles = EStyleSheet.create({
   },
   verificationBox: {
     alignItems: 'flex-end',
-    marginBottom: '350rem',
+    marginBottom: '400rem',
     justifyContent: 'flex-start',
   },
 });
