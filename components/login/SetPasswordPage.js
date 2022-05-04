@@ -19,7 +19,7 @@ EStyleSheet.build({$rem: rem});
 const SetPasswordPage = ({route, navigation}) => {
   const {signUp} = useContext(AuthContext);
 
-  const {username} = route.params;
+  const {username} = route.params.username;
   const [password, setPassword] = useState('');
 
   return (
@@ -110,6 +110,7 @@ const styles = EStyleSheet.create({
     borderRadius: '2rem',
     fontFamily: 'Montserrat-Medium',
     paddingLeft: '10rem',
+    autoCapitalize: 'none'
   },
   btn: {
     width: '220rem',

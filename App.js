@@ -73,8 +73,8 @@ const App = () => {
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
-
-        dispatch({type: 'SIGN_IN', token: 'dummy-auth-token'});
+        
+        dispatch({type: 'SIGN_IN', token: res.auth_token});
       },
       signOut: () => dispatch({type: 'SIGN_OUT'}),
       signUp: async data => {
@@ -83,7 +83,18 @@ const App = () => {
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
 
-        dispatch({type: 'SIGN_IN', token: 'dummy-auth-token'});
+        let res = await fetch('http://127.0.0.1:5000/auth/register', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+
+          body: JSON.stringify({email: data.username, password: data.password}),
+        });
+        let result = await res.json();
+        console.log(result);
+
+        dispatch({type: 'SIGN_IN', token: result.auth_token});
       },
     }),
     [],
