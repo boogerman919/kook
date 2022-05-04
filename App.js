@@ -74,9 +74,21 @@ const App = () => {
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
         
-        dispatch({type: 'SIGN_IN', token: res.auth_token});
+        let res = await fetch('http://127.0.0.1:5000/auth/login', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+
+          body: JSON.stringify({email: data.username, password: data.password}),
+        });
+        let result = await res.json();
+
+        dispatch({type: 'SIGN_IN', token: result.auth_token});
       },
+
       signOut: () => dispatch({type: 'SIGN_OUT'}),
+      
       signUp: async data => {
         // In a production app, we need to send user data to server and get a token
         // We will also need to handle errors if sign up failed
@@ -92,8 +104,6 @@ const App = () => {
           body: JSON.stringify({email: data.username, password: data.password}),
         });
         let result = await res.json();
-        console.log(result);
-
         dispatch({type: 'SIGN_IN', token: result.auth_token});
       },
     }),
