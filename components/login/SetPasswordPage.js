@@ -39,13 +39,17 @@ const SetPasswordPage = ({route, navigation}) => {
       </View>
       <TextInput
         value={password}
+        autoCapitalize="none"
         onChangeText={setPassword}
         secureTextEntry
         style={styles.textInput}></TextInput>
       <View style={styles.textContainer}>
         <Text style={styles.text}>confirm password</Text>
       </View>
-      <TextInput secureTextEntry style={styles.textInput}></TextInput>
+      <TextInput
+        autoCapitalize="none"
+        secureTextEntry
+        style={styles.textInput}></TextInput>
       <TouchableOpacity
         onPress={() => signUp({username, password})}
         style={styles.btn}>

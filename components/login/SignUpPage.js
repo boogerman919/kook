@@ -35,13 +35,14 @@ const SignUpPage = ({navigation}) => {
       </View>
       <TextInput
         value={username}
+        autoCapitalize="none"
         onChangeText={setUsername}
         style={styles.textInput}></TextInput>
       <View style={styles.textContainer}>
         <Text style={styles.text}>enter verification code</Text>
       </View>
       <View style={styles.verificationBox}>
-        <TextInput style={styles.textInput}></TextInput>
+        <TextInput style={styles.textInput} autoCapitalize="none"></TextInput>
         <TouchableOpacity
           onPress={() =>
             navigation.navigate('SetPassword', {username: {username}})
@@ -109,7 +110,6 @@ const styles = EStyleSheet.create({
     borderRadius: '2rem',
     fontFamily: 'Montserrat-Medium',
     paddingLeft: '10rem',
-    autoCapitalize: 'none',
   },
   btn: {
     height: '50rem',

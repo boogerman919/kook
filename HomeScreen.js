@@ -10,6 +10,9 @@ import Button from './components/Buttons';
 import Stopwatch from './components/Stopwatch';
 import Receipt from './components/Receipt';
 import Menu from './components/Menu';
+import NfcManager, {NfcTech} from 'react-native-nfc-manager';
+
+NfcManager.start();
 
 // w: 390 h: 844
 const window = Dimensions.get('window');
@@ -62,6 +65,7 @@ const HomeScreen = () => {
         setButtonColor('#ED474A');
         setButtonText('Cancel');
         setCurrentStage('nfc');
+        readNdef();
         break;
       case 'nfc':
         startSession();
@@ -99,6 +103,23 @@ const HomeScreen = () => {
         : `0${parseInt((time % 3600) / 60)}:`;
     let s = time % 60 >= 10 ? `${time % 60}` : `0${time % 60}`;
     return h + m + s;
+  };
+
+  const readNdef = async () => {
+    console.log('reading');
+    try {
+      // register for the NFC tag with NDEF in it
+      await NfcManager.requestTechnology(NfcTech.Ndef);
+      // the resolved tag object will contain `ndefMessage` property
+      const tag = await NfcManager.getTag();
+      console.warn('Tag found', tag);
+      return tag;
+    } catch (e) {
+      console.log(e.message);
+    } finally {
+      // stop the nfc scanning
+      NfcManager.cancelTechnologyRequest();
+    }
   };
 
   const startSession = async () => {

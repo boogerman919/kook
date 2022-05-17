@@ -11,6 +11,9 @@ import SignUpPage from './components/login/SignUpPage';
 import SetPasswordPage from './components/login/SetPasswordPage';
 import {AuthContext} from './components/login/context';
 
+import {LogBox} from 'react-native';
+LogBox.ignoreLogs(['new NativeEventEmitter']);
+
 const Stack = createStackNavigator();
 
 const App = () => {

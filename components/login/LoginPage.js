@@ -32,6 +32,7 @@ const LoginPage = ({navigation}) => {
       </View>
       <TextInput
         value={username}
+        autoCapitalize="none"
         onChangeText={setUsername}
         style={styles.textInput}></TextInput>
       <View style={styles.textContainer}>
@@ -39,6 +40,7 @@ const LoginPage = ({navigation}) => {
       </View>
       <TextInput
         value={password}
+        autoCapitalize="none"
         onChangeText={setPassword}
         secureTextEntry
         style={styles.textInput}></TextInput>
