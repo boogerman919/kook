@@ -48,6 +48,10 @@ const App = () => {
   );
 
   useEffect(() => {
+    console.log(state.userToken);
+  }, [state.userToken]);
+
+  useEffect(() => {
     // Fetch the token from storage then navigate to our appropriate place
     const bootstrapAsync = async () => {
       let userToken;
@@ -86,11 +90,27 @@ const App = () => {
           body: JSON.stringify({email: data.username, password: data.password}),
         });
         let result = await res.json();
-
+        
         dispatch({type: 'SIGN_IN', token: result.auth_token});
       },
 
-      signOut: () => dispatch({type: 'SIGN_OUT'}),
+      signOut: async () => {
+
+        console.log(state.userToken);
+
+        let res = await fetch('http://127.0.0.1:5000/auth/logout', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + state.userToken,
+          },
+        });
+
+        let result = await res.json();
+        console.log(result);
+
+        dispatch({type: 'SIGN_OUT'})
+      },
       
       signUp: async data => {
         // In a production app, we need to send user data to server and get a token
