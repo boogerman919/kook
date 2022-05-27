@@ -5,7 +5,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 import {parse} from '@babel/core';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import HomeScreen from './HomeScreen';
+import HomeScreen from './components/home/HomeScreen';
 import LoginPage from './components/login/LoginPage';
 import SignUpPage from './components/login/SignUpPage';
 import SetPasswordPage from './components/login/SetPasswordPage';
@@ -13,6 +13,8 @@ import {AuthContext} from './components/login/context';
 
 import {LogBox} from 'react-native';
 LogBox.ignoreLogs(['new NativeEventEmitter']);
+
+import Config from './Config.json';
 
 const Stack = createStackNavigator();
 
@@ -80,8 +82,7 @@ const App = () => {
         // We will also need to handle errors if sign in failed
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
-        
-        let res = await fetch('http://127.0.0.1:5000/auth/login', {
+        let res = await fetch(Config.SERVER_URL + '/auth/login', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -98,7 +99,7 @@ const App = () => {
 
         console.log(state.userToken);
 
-        let res = await fetch('http://127.0.0.1:5000/auth/logout', {
+        let res = await fetch(Config.SERVER_URL + '/auth/logout', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -118,7 +119,7 @@ const App = () => {
         // After getting token, we need to persist the token using `SecureStore` or any other encrypted storage
         // In the example, we'll use a dummy token
 
-        let res = await fetch('http://127.0.0.1:5000/auth/register', {
+        let res = await fetch(Config.SERVER_URL + '/auth/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

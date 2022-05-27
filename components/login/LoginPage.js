@@ -45,7 +45,9 @@ const LoginPage = ({navigation}) => {
         secureTextEntry
         style={styles.textInput}></TextInput>
       <TouchableOpacity
-        onPress={() => signIn({username, password})}
+        onPress={() => {
+          signIn({username, password});
+        }}
         style={styles.btn}>
         <Text style={styles.btnText}>Sign In</Text>
       </TouchableOpacity>

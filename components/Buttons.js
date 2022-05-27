@@ -13,7 +13,9 @@ const Button = ({position, icon, action}) => {
       style={[styles.btn, position]}
       onPress={() => {
         action();
-      }}></TouchableOpacity>
+      }}>
+      <Text style={styles.btnText}>≡</Text>
+    </TouchableOpacity>
   );
 };
 
@@ -26,6 +28,13 @@ const styles = EStyleSheet.create({
     shadowOffset: {width: 0, height: '-1rem'},
     shadowOpacity: 0.12,
     shadowRadius: '15rem',
+  },
+  btnText: {
+    color: '#595959',
+    paddingTop: '4rem',
+    fontSize: '26rem',
+    fontFamily: 'Montserrat-SemiBold',
+    textAlign: 'center',
   },
 });
 

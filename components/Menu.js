@@ -28,6 +28,13 @@ const Menu = ({showMenu, toggleMenu}) => {
       swipeThreshold={100}
       onSwipeComplete={() => toggleMenu()}>
       <View style={styles.container}>
+        <TouchableOpacity
+          onPress={() => {
+            toggleMenu();
+          }}
+          style={styles.closeBtn}>
+          <Text style={styles.closeText}>✕</Text>
+        </TouchableOpacity>
         <TouchableOpacity style={styles.accNameBtn}>
           <Text style={styles.accNameText}>Account Name</Text>
         </TouchableOpacity>
@@ -66,7 +73,7 @@ const Menu = ({showMenu, toggleMenu}) => {
 
 const styles = EStyleSheet.create({
   container: {
-    height: window.height,
+    height: window.height - 13,
     width: '275rem',
     left: 0,
     backgroundColor: '#F8F8F8',
@@ -74,9 +81,22 @@ const styles = EStyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: '10rem',
     paddingLeft: '25rem',
-    paddingTop: '88rem',
+    paddingTop: '26rem',
     alignItems: 'flex-start',
     justifyContent: 'space-between',
+  },
+  closeBtn: {
+    //enlarged and transparent for easy clicking
+    marginBottom: '63rem',
+    width: '42rem',
+    height: '42rem',
+  },
+  closeText: {
+    color: '#595959',
+    paddingTop: '4rem',
+    paddingLeft: '1rem',
+    fontSize: '26rem',
+    fontFamily: 'Montserrat-SemiBold',
   },
   accNameBtn: {
     marginBottom: '50rem',

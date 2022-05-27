@@ -4,13 +4,15 @@ import {View, Dimensions, Animated, Text, TouchableOpacity} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {parse} from '@babel/core';
-import Panel from './components/Panel';
-import MainButton from './components/MainButton';
-import Button from './components/Buttons';
-import Stopwatch from './components/Stopwatch';
-import Receipt from './components/Receipt';
-import Menu from './components/Menu';
+import Panel from '../Panel';
+import MainButton from '../MainButton';
+import Button from '../Buttons';
+import Stopwatch from '../Stopwatch';
+import Receipt from '../Receipt';
+import Menu from '../Menu';
 import NfcManager, {NfcTech} from 'react-native-nfc-manager';
+
+import Config from '../../Config.json';
 
 NfcManager.start();
 
@@ -123,7 +125,7 @@ const HomeScreen = () => {
   };
 
   const startSession = async () => {
-    let res = await fetch('http://127.0.0.1:5000/start_ride', {
+    let res = await fetch(Config.SERVER_URL + '/start_ride', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -147,7 +149,7 @@ const HomeScreen = () => {
   };
 
   const endSession = async () => {
-    let res = await fetch('http://127.0.0.1:5000/end_ride', {
+    let res = await fetch(Config.SERVER_URL + '/end_ride', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -222,8 +224,10 @@ const HomeScreen = () => {
     <View style={styles.container}>
       <Menu showMenu={showMenu} toggleMenu={toggleMenu}></Menu>
       <Button
-        position={{right: -135 * rem, top: 80 * rem}}
-        action={toggleMenu}></Button>
+        position={{left: -155 * rem, top: 20 * rem}}
+        style={{fontSize: '20rem', color: 'black'}}
+        action={toggleMenu}
+      />
       <Panel panelHeight={panelHeight} contents={contents} />
       <MainButton
         buttonReaction={buttonReaction}
