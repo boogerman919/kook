@@ -8,7 +8,7 @@ const window = Dimensions.get('window');
 
 EStyleSheet.build({$rem: window.width / 390});
 
-const Menu = ({showMenu, toggleMenu}) => {
+const Menu = ({showMenu, toggleMenu, changeSubpage}) => {
   const {signOut} = React.useContext(AuthContext);
 
   return (
@@ -35,25 +35,54 @@ const Menu = ({showMenu, toggleMenu}) => {
           style={styles.closeBtn}>
           <Text style={styles.closeText}>✕</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.accNameBtn}>
+        <TouchableOpacity
+          onPress={() => {
+            changeSubpage('');
+          }}
+          style={styles.accNameBtn}>
           <Text style={styles.accNameText}>Account Name</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.itemBtn}>
+        {/* 
+        <TouchableOpacity
+          onPress={() => {
+            changeSubpage('');
+          }}
+          style={styles.accNameBtn}>
           <Text style={styles.itemText}>Wallet</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.itemBtn}>
+        </TouchableOpacity> */}
+        <TouchableOpacity
+          onPress={() => {
+            changeSubpage('rideHistory');
+          }}
+          style={styles.accNameBtn}>
           <Text style={styles.itemText}>Ride History</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.itemBtn}>
+        <TouchableOpacity
+          onPress={() => {
+            changeSubpage('safety');
+          }}
+          style={styles.accNameBtn}>
           <Text style={styles.itemText}>Safety</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.itemBtn}>
+        <TouchableOpacity
+          onPress={() => {
+            changeSubpage('faq');
+          }}
+          style={styles.accNameBtn}>
           <Text style={styles.itemText}>FAQs</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.itemBtn}>
+        <TouchableOpacity
+          onPress={() => {
+            changeSubpage('contactUs');
+          }}
+          style={styles.accNameBtn}>
           <Text style={styles.itemText}>Contact Us</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.itemBtn}>
+        <TouchableOpacity
+          onPress={() => {
+            changeSubpage('legal');
+          }}
+          style={styles.accNameBtn}>
           <Text style={styles.itemText}>Legal</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.logOutBtn}>

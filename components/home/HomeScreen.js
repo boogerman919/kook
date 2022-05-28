@@ -10,6 +10,7 @@ import Button from '../Buttons';
 import Stopwatch from '../Stopwatch';
 import Receipt from '../Receipt';
 import Menu from '../Menu';
+import SubPages from '../subPages/SubPages';
 import NfcManager, {NfcTech} from 'react-native-nfc-manager';
 
 import Config from '../../Config.json';
@@ -28,6 +29,12 @@ const BOARD_ID = 1;
 const HomeScreen = () => {
   // stages: ['landing', 'nfc', 'started', 'returned', 'charge']
   const [currentStage, setCurrentStage] = useState('landing');
+
+  // subpages: ['none', 'rideHistory', 'safety', 'faq', 'contactUs', 'legal']
+  const [subpageState, setSubpage] = useState('none');
+
+  // set to show the subpages or not
+  const [showSubpage, setShowSubpage] = useState(false);
 
   // Height Ratio for Panel's Height
   const [heightRatio, setHeightRatio] = useState(2.8);
@@ -89,6 +96,24 @@ const HomeScreen = () => {
         setStopwatchTime(0);
         setButtonText('Surf');
         setCurrentStage('landing');
+        break;
+    }
+  };
+
+  const changeSubpage = subpage => {
+    switch (subpage) {
+      case 'none':
+        setSubpage(subpage);
+        setShowSubpage(false);
+        break;
+      case 'rideHistory':
+      case 'safety':
+      case 'faq':
+      case 'contactUs':
+      case 'legal':
+        setShowMenu(false);
+        setShowSubpage(true);
+        setSubpage(subpage);
         break;
     }
   };
@@ -212,6 +237,20 @@ const HomeScreen = () => {
     };
   }, [triggerReceipt]);
 
+  // subpage slide in animation
+  const subpageRightOffset = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    var toValue = window.width;
+    if (showSubpage) {
+      toValue = 0;
+    }
+    Animated.timing(subpageRightOffset, {
+      toValue: toValue,
+      useNativeDriver: false,
+      duration: 200,
+    }).start();
+  }, [showSubpage]);
+
   var contents = [
     <Receipt
       key="receipt"
@@ -222,7 +261,11 @@ const HomeScreen = () => {
 
   return (
     <View style={styles.container}>
-      <Menu showMenu={showMenu} toggleMenu={toggleMenu}></Menu>
+      <Menu
+        showMenu={showMenu}
+        toggleMenu={toggleMenu}
+        changeSubpage={changeSubpage}
+      />
       <Button
         position={{left: -155 * rem, top: 20 * rem}}
         style={{fontSize: '20rem', color: 'black'}}
@@ -239,6 +282,11 @@ const HomeScreen = () => {
       <Stopwatch
         stopwatchOpacity={stopwatchOpacity}
         time={timeConverter(stopwatchTime)}
+      />
+      <SubPages
+        subpageState={subpageState}
+        rightOffset={subpageRightOffset}
+        changeSubpage={changeSubpage}
       />
     </View>
   );
