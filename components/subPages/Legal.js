@@ -16,7 +16,7 @@ const window = Dimensions.get('window');
 var rem = window.width / 390;
 EStyleSheet.build({$rem: rem});
 
-const Legal = ({subpageState}) => {
+const Legal = ({display}) => {
   return (
     <View>
     </View>

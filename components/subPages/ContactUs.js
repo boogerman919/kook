@@ -16,7 +16,7 @@ const window = Dimensions.get('window');
 var rem = window.width / 390;
 EStyleSheet.build({$rem: rem});
 
-const ContactUs = ({subpageState}) => {
+const ContactUs = ({display}) => {
   return (
     <View>
     </View>
