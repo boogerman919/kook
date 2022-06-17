@@ -31,6 +31,7 @@ const styles = EStyleSheet.create({
     borderRightWidth: '43rem',
     borderBottomWidth: '130rem',
     borderColor: '#F8F8F8',
+    flexDirection: 'column',
   },
 });
 

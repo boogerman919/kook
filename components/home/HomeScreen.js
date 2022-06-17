@@ -4,11 +4,12 @@ import {View, Dimensions, Animated, Text, TouchableOpacity} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {parse} from '@babel/core';
-import Panel from '../Panel';
-import MainButton from '../MainButton';
-import Button from '../Buttons';
-import Stopwatch from '../Stopwatch';
-import Receipt from '../Receipt';
+import Panel from './Panel';
+import MainButton from './MainButton';
+import Button from './Buttons';
+import Stopwatch from './Stopwatch';
+import Receipt from './Receipt';
+import Feedback from './Feedback';
 import Menu from '../Menu';
 import SubPages from '../subPages/SubPages';
 import NfcManager, {NfcTech} from 'react-native-nfc-manager';
@@ -27,7 +28,7 @@ const USER_ID = 1;
 const BOARD_ID = 1;
 
 const HomeScreen = () => {
-  // stages: ['landing', 'nfc', 'started', 'returned', 'charge']
+  // stages: ['landing', 'nfc', 'started', 'returned', 'charge', 'feedback']
   const [currentStage, setCurrentStage] = useState('landing');
 
   // subpages: ['none', 'rideHistory', 'safety', 'faq', 'contactUs', 'legal']
@@ -60,6 +61,17 @@ const HomeScreen = () => {
   // triggers receipt animation
   const [triggerReceipt, setTriggerReceipt] = useState(false);
 
+  // show feedback or not
+  const [showFeedback, setShowFeedback] = useState(0);
+
+  // 
+
+  // surfboard quality feedback text
+  const [surfboardFeedback, onChangeSurfboardFeedback] = useState('');
+
+  // app feedback text
+  const [appFeedback, onChangeAppFeedback] = useState('');
+
   // show menu or not
   const [showMenu, setShowMenu] = useState(false);
 
@@ -85,13 +97,24 @@ const HomeScreen = () => {
       case 'returned':
         setHeightRatio(1.22);
         setShowStopwatch(0);
-        setButtonText('Done');
+        setButtonText('Next');
         setShowReceipt(1);
         setCurrentStage('charge');
         break;
       case 'charge':
         setShowReceipt(0);
         setTriggerReceipt(1);
+        setHeightRatio(0.84);
+        setStopwatchTime(0);
+        setShowFeedback(1);
+        setButtonText('Done');
+        setCurrentStage('feedback');
+        break;
+      case 'feedback':
+        if (appFeedback.trim() === '') {
+
+        }
+        setShowFeedback(0);
         setHeightRatio(2.8);
         setStopwatchTime(0);
         setButtonText('Surf');
@@ -193,8 +216,11 @@ const HomeScreen = () => {
   };
 
   const toggleMenu = () => {
-    if (showMenu) setShowMenu(false);
-    else setShowMenu(true);
+    if (showMenu) {
+      setShowMenu(false);
+    } else {
+      setShowMenu(true);
+    }
   };
 
   /* ANIMATIONS!!! */
@@ -211,7 +237,7 @@ const HomeScreen = () => {
     }).start(() => {
       setTriggerReceipt(true);
     });
-  }, [heightRatio]);
+  }, [heightRatio, panelHeight]);
 
   // stopwatch opacity effect
   const stopwatchOpacity = useRef(new Animated.Value(0)).current;
@@ -221,7 +247,7 @@ const HomeScreen = () => {
       useNativeDriver: false,
       duration: 250,
     }).start();
-  }, [showStopwatch]);
+  }, [showStopwatch, stopwatchOpacity]);
 
   // receipt opacity effect
   const receiptOpacity = useRef(new Animated.Value(0)).current;
@@ -235,7 +261,7 @@ const HomeScreen = () => {
     return () => {
       setTriggerReceipt(false);
     };
-  }, [triggerReceipt]);
+  }, [receiptOpacity, showReceipt, triggerReceipt]);
 
   // subpage slide in animation
   const subpageRightOffset = useRef(new Animated.Value(0)).current;
@@ -249,13 +275,21 @@ const HomeScreen = () => {
       useNativeDriver: false,
       duration: 200,
     }).start();
-  }, [showSubpage]);
+  }, [showSubpage, subpageRightOffset]);
 
   var contents = [
     <Receipt
       key="receipt"
       usedTime={stopwatchTime}
       receiptOpacity={receiptOpacity}
+    />,
+    <Feedback
+      key="feedback"
+      showFeedback={showFeedback}
+      surfboardFeedback={surfboardFeedback}
+      onChangeSurfboardFeedback={onChangeSurfboardFeedback}
+      appFeedback={appFeedback}
+      onChangeAppFeedback={onChangeAppFeedback}
     />,
   ];
 

@@ -4,7 +4,7 @@ import EStyleSheet from 'react-native-extended-stylesheet';
 
 const window = Dimensions.get('window');
 
-monthNames = [
+const monthNames = [
   'JANUARY',
   'FEBUARY',
   'MARCH',
@@ -49,7 +49,13 @@ const Receipt = ({usedTime, receiptOpacity}) => {
   const total = `$${(fareNumber * (1 + taxRate)).toFixed(2)}`;
 
   return (
-    <Animated.View style={[styles.container, {opacity: receiptOpacity}]}>
+    <Animated.View
+      style={[
+        styles.container,
+        {
+          opacity: receiptOpacity,
+        },
+      ]}>
       <View key="title container" style={styles.titleContainer}>
         <Text key="date" style={styles.date}>
           {formattedDate}
@@ -89,6 +95,7 @@ const Receipt = ({usedTime, receiptOpacity}) => {
 const styles = EStyleSheet.create({
   container: {
     flex: 1,
+    order: 2,
     justifyContent: 'space-between',
   },
   titleContainer: {
