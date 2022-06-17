@@ -18,15 +18,7 @@ const countChar = (strang, c) => {
 };
 
 const MultilineTextInput = props => {
-  return (
-    <TextInput
-      multiline
-      numberOfLines={4}
-      editable
-      style={styles.feedbackInput}
-      {...props}
-    />
-  );
+  return <TextInput multiline numberOfLines={4} editable {...props} />;
 };
 
 const Feedback = ({
@@ -35,6 +27,8 @@ const Feedback = ({
   onChangeSurfboardFeedback,
   appFeedback,
   onChangeAppFeedback,
+  appFeedbackBorder,
+  surfboardFeedbackBorder,
 }) => {
   const onChangeSurfboard = text => {
     if (countChar(text, '\n') >= 4) {
@@ -69,6 +63,7 @@ const Feedback = ({
           Feedback for the surfboard's quality
         </Text>
         <MultilineTextInput
+          style={[styles.feedbackInput, {borderColor: appFeedbackBorder}]}
           value={surfboardFeedback}
           onChangeText={text => onChangeSurfboard(text)}
         />
@@ -76,6 +71,7 @@ const Feedback = ({
         <Text style={styles.spacer} />
         <Text style={styles.feedbackTitle}>Feedback for this app</Text>
         <MultilineTextInput
+          style={[styles.feedbackInput, {borderColor: surfboardFeedbackBorder}]}
           value={appFeedback}
           onChangeText={text => onChangeApp(text)}
         />

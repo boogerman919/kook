@@ -1,6 +1,12 @@
 'use strict';
 import React, {useState, useEffect, useRef} from 'react';
-import {View, Dimensions, Animated, Text, TouchableOpacity} from 'react-native';
+import {
+  View,
+  Dimensions,
+  Animated,
+  Keyboard,
+  TouchableWithoutFeedback,
+} from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {parse} from '@babel/core';
@@ -64,7 +70,12 @@ const HomeScreen = () => {
   // show feedback or not
   const [showFeedback, setShowFeedback] = useState(0);
 
-  // 
+  // app feedback border color
+  const [appFeedbackBorder, setAppFeedbackBorder] = useState('grey');
+
+  // surfboard feedback border color
+  const [surfboardFeedbackBorder, setSurfboardFeedbackBorder] =
+    useState('grey');
 
   // surfboard quality feedback text
   const [surfboardFeedback, onChangeSurfboardFeedback] = useState('');
@@ -111,9 +122,28 @@ const HomeScreen = () => {
         setCurrentStage('feedback');
         break;
       case 'feedback':
+        // Check if inputs are empty
+        let anyEmpty = false;
         if (appFeedback.trim() === '') {
-
+          setAppFeedbackBorder('#ed2e1c');
+          anyEmpty = true;
+        } else {
+          setAppFeedbackBorder('grey');
         }
+        if (surfboardFeedback.trim() === '') {
+          setSurfboardFeedbackBorder('#ed2e1c');
+          anyEmpty = true;
+        } else {
+          setSurfboardFeedbackBorder('grey');
+        }
+        if (anyEmpty) {
+          return;
+        }
+
+        // Send feedback to sever
+        // TODO:
+
+        Keyboard.dismiss();
         setShowFeedback(0);
         setHeightRatio(2.8);
         setStopwatchTime(0);
@@ -290,39 +320,43 @@ const HomeScreen = () => {
       onChangeSurfboardFeedback={onChangeSurfboardFeedback}
       appFeedback={appFeedback}
       onChangeAppFeedback={onChangeAppFeedback}
+      appFeedbackBorder={appFeedbackBorder}
+      surfboardFeedbackBorder={surfboardFeedbackBorder}
     />,
   ];
 
   return (
-    <View style={styles.container}>
-      <Menu
-        showMenu={showMenu}
-        toggleMenu={toggleMenu}
-        changeSubpage={changeSubpage}
-      />
-      <Button
-        position={{left: -155 * rem, top: 20 * rem}}
-        style={{fontSize: '20rem', color: 'black'}}
-        action={toggleMenu}
-      />
-      <Panel panelHeight={panelHeight} contents={contents} />
-      <MainButton
-        buttonReaction={buttonReaction}
-        currentStage={currentStage}
-        text={buttonText}
-        buttonColor={buttonColor}
-        buttonOpacity={buttonOpacity}
-      />
-      <Stopwatch
-        stopwatchOpacity={stopwatchOpacity}
-        time={timeConverter(stopwatchTime)}
-      />
-      <SubPages
-        subpageState={subpageState}
-        rightOffset={subpageRightOffset}
-        changeSubpage={changeSubpage}
-      />
-    </View>
+    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+      <View style={styles.container}>
+        <Menu
+          showMenu={showMenu}
+          toggleMenu={toggleMenu}
+          changeSubpage={changeSubpage}
+        />
+        <Button
+          position={{left: -155 * rem, top: 20 * rem}}
+          style={{fontSize: '20rem', color: 'black'}}
+          action={toggleMenu}
+        />
+        <Panel panelHeight={panelHeight} contents={contents} />
+        <MainButton
+          buttonReaction={buttonReaction}
+          currentStage={currentStage}
+          text={buttonText}
+          buttonColor={buttonColor}
+          buttonOpacity={buttonOpacity}
+        />
+        <Stopwatch
+          stopwatchOpacity={stopwatchOpacity}
+          time={timeConverter(stopwatchTime)}
+        />
+        <SubPages
+          subpageState={subpageState}
+          rightOffset={subpageRightOffset}
+          changeSubpage={changeSubpage}
+        />
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
