@@ -92,6 +92,7 @@ const HomeScreen = () => {
 
   // Things that will happen after pressing the main button
   const buttonReaction = currentStage => {
+    console.log(currentStage);
     switch (currentStage) {
       case 'landing':
         setHeightRatio(window.width / window.height);
@@ -141,8 +142,8 @@ const HomeScreen = () => {
           return;
         }
 
-        // Send feedback to sever
-        // TODO:
+        // Send feedback to server
+        sendFeedback();
         onChangeSurfboardFeedback('');
         onChangeAppFeedback('');
 
@@ -154,6 +155,21 @@ const HomeScreen = () => {
         setCurrentStage('landing');
         break;
     }
+  };
+
+  const sendFeedback = async () => {
+    let res = await fetch(Config.SERVER_URL + '/feedback', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name: 'Feedback-5gJge',
+        email: global.email,
+        phone: 'Feedback-h2Mhf',
+        message: 'surfboard: ' + surfboardFeedback + '\n\n\napp:' + appFeedback,
+      }),
+    });
   };
 
   const changeSubpage = subpage => {

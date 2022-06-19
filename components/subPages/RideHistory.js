@@ -35,6 +35,7 @@ const MONTHS = [
   'Dec',
 ];
 
+// TODO: add scroll to the very top to refresh
 const RideHistory = ({display}) => {
   let ridesTemp;
   if (global.rideHistory == null) {
@@ -44,21 +45,24 @@ const RideHistory = ({display}) => {
   }
 
   const [rides, setRides] = useState(ridesTemp);
-  const [fetched, setFetched] = useState(false);
+  let fetched = false;
 
-  if (fetched === false) {
-    fetch(Config.SERVER_URL + '/get_rides?user_id=' + global.user_id, {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-      .then(response => response.json())
-      .then(data => {
-        console.log(data);
-        setRides(data);
-        setFetched(true);
-      });
+  if (global.rideHistory == null) {
+    if (fetched === false) {
+      fetch(Config.SERVER_URL + '/get_rides?user_id=' + global.user_id, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          setRides(data);
+          global.rideHistory = data;
+          fetched = true;
+        });
+    }
   }
 
   console.log('refreshed');

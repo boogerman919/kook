@@ -131,6 +131,7 @@ const styles = EStyleSheet.create({
   verificationBox: {
     alignItems: 'flex-end',
     marginBottom: '400rem',
+    color: 'black',
     justifyContent: 'flex-start',
   },
 });

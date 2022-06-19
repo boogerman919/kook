@@ -64,7 +64,7 @@ const SubPages = ({subpageState, rightOffset, changeSubpage}) => {
 const styles = EStyleSheet.create({
   mainView: {
     width: window.width,
-    height: window.height + 61 * rem,
+    height: window.height,
     position: 'absolute',
     zIndex: 2,
     right: window.width,

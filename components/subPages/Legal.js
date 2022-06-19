@@ -9,6 +9,7 @@ import {
   TextInput,
 } from 'react-native';
 import {AuthContext} from './context';
+import {Linking} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 import {ScrollView} from 'react-native-gesture-handler';
 
@@ -19,42 +20,55 @@ EStyleSheet.build({$rem: rem});
 
 const Legal = ({display}) => {
   return (
-    <ScrollView style={[styles.faqScroll]} display={display}>
-      <View>
-        <Text style={styles.title}>Legal</Text>
-        <Text style={styles.question} />
-        <Text style={styles.answer}>This is Aldrin</Text>
-      </View>
-    </ScrollView>
+    <View style={[styles.container]} display={display}>
+      <Text style={styles.title}>Legal</Text>
+      <Text style={styles.text}>
+        Follow to our{'\n'}
+        <Text
+          style={styles.link}
+          onPress={() => Linking.openURL('http://google.com')}>
+          website
+        </Text>{' '}
+        to check out {'\n'} our legal terms
+      </Text>
+    </View>
   );
 };
 
 const styles = EStyleSheet.create({
-  faqScroll: {
-    backgroundColor: 'grey',
+  container: {
+    backgroundColor: '#10e6b5',
     width: '100%',
     height: '100%',
-    overflowX: 'hidden',
-    overflowY: 'scroll',
-    paddingLeft: '18rem',
-    paddingRight: '18rem',
-    paddingTop: '19rem',
     position: 'relative',
-    //top: '-61rem',
+    // top: '-61rem',
     marginLeft: '-61rem',
     flexGrow: 3,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontSize: '28rem',
-    color: 'black',
+    color: 'white',
     width: '100%',
     textAlign: 'center',
+    paddingBottom: '10rem',
+    fontFamily: 'Montserrat-SemiBold',
   },
-  question: {
-
+  text: {
+    color: 'white',
+    fontSize: '19rem',
+    width: '190rem',
+    textAlign: 'center',
+    fontFamily: 'Montserrat',
+    paddingBottom: '40rem',
   },
-  answer: {
-
+  width100: {
+    width: '100%',
+  },
+  link: {
+    color: '#1283b0',
+    textDecorationLine: 'underline',
   },
 });
 
