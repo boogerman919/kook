@@ -91,8 +91,21 @@ const App = () => {
           body: JSON.stringify({email: data.username, password: data.password}),
         });
         let result = await res.json();
+        let auth_token = result.auth_token;
 
-        dispatch({type: 'SIGN_IN', token: result.auth_token});
+        res = await fetch(Config.SERVER_URL + '/auth/status', {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: 'Bearer ' + auth_token,
+          },
+        });
+        result = await res.json();
+
+        global.user_id = result.data.user_id;
+        global.email = result.data.email;
+
+        dispatch({type: 'SIGN_IN', token: auth_token});
       },
 
       signOut: async () => {
@@ -102,14 +115,14 @@ const App = () => {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer ' + state.userToken,
+            Authorization: 'Bearer ' + state.userToken,
           },
         });
 
         let result = await res.json();
         console.log(result);
 
-        dispatch({type: 'SIGN_OUT'})
+        dispatch({type: 'SIGN_OUT'});
       },
 
       signUp: async data => {
@@ -130,7 +143,7 @@ const App = () => {
         dispatch({type: 'SIGN_IN', token: result.auth_token});
       },
     }),
-    [],
+    [state.userToken],
   );
 
   return (

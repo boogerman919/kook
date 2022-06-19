@@ -18,7 +18,9 @@ import Receipt from './Receipt';
 import Feedback from './Feedback';
 import Menu from '../Menu';
 import SubPages from '../subPages/SubPages';
-import NfcManager, {NfcTech} from 'react-native-nfc-manager';
+import NfcManager from 'react-native-nfc-manager';
+//TODO: moving readNdef to Subs.js might broke some things.
+import {timeConverter, readNdef} from '../common/Subs';
 
 import Config from '../../Config.json';
 
@@ -30,7 +32,6 @@ const window = Dimensions.get('window');
 var rem = window.width / 390;
 EStyleSheet.build({$rem: rem});
 
-const USER_ID = 1;
 const BOARD_ID = 1;
 
 const HomeScreen = () => {
@@ -142,6 +143,8 @@ const HomeScreen = () => {
 
         // Send feedback to sever
         // TODO:
+        onChangeSurfboardFeedback('');
+        onChangeAppFeedback('');
 
         Keyboard.dismiss();
         setShowFeedback(0);
@@ -171,44 +174,14 @@ const HomeScreen = () => {
     }
   };
 
-  // converts seconds into hh:mm:ss form
-  const timeConverter = time => {
-    let h =
-      parseInt(time / 3600) >= 10
-        ? `${parseInt(time / 3600)}:`
-        : `0${parseInt(time / 3600)}:`;
-    let m =
-      parseInt((time % 3600) / 60) >= 10
-        ? `${parseInt((time % 3600) / 60)}:`
-        : `0${parseInt((time % 3600) / 60)}:`;
-    let s = time % 60 >= 10 ? `${time % 60}` : `0${time % 60}`;
-    return h + m + s;
-  };
-
-  const readNdef = async () => {
-    console.log('reading');
-    try {
-      // register for the NFC tag with NDEF in it
-      await NfcManager.requestTechnology(NfcTech.Ndef);
-      // the resolved tag object will contain `ndefMessage` property
-      const tag = await NfcManager.getTag();
-      console.warn('Tag found', tag);
-      return tag;
-    } catch (e) {
-      console.log(e.message);
-    } finally {
-      // stop the nfc scanning
-      NfcManager.cancelTechnologyRequest();
-    }
-  };
-
   const startSession = async () => {
     let res = await fetch(Config.SERVER_URL + '/start_ride', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({user_id: USER_ID, board_id: BOARD_ID}),
+      body: JSON.stringify({user_id: global.user_id, board_id: BOARD_ID}),
+      // TODO: make BOARD_ID an actual thing
     });
     let rideInfo = await res.json();
     setRide_id(rideInfo.ride_id);
@@ -335,7 +308,7 @@ const HomeScreen = () => {
         />
         <Button
           position={{left: -155 * rem, top: 20 * rem}}
-          style={{fontSize: '20rem', color: 'black'}}
+          style={styles.toggleMenu}
           action={toggleMenu}
         />
         <Panel panelHeight={panelHeight} contents={contents} />
@@ -365,6 +338,10 @@ const styles = EStyleSheet.create({
     flex: 1,
     alignItems: 'center',
     backgroundColor: '#05F2BC',
+  },
+  toggleMenu: {
+    fontSize: '20rem',
+    color: 'black',
   },
 });
 

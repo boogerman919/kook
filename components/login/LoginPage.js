@@ -34,7 +34,8 @@ const LoginPage = ({navigation}) => {
         value={username}
         autoCapitalize="none"
         onChangeText={setUsername}
-        style={styles.textInput}></TextInput>
+        style={styles.textInput}
+      />
       <View style={styles.textContainer}>
         <Text style={styles.text}>password</Text>
       </View>
@@ -43,7 +44,8 @@ const LoginPage = ({navigation}) => {
         autoCapitalize="none"
         onChangeText={setPassword}
         secureTextEntry
-        style={styles.textInput}></TextInput>
+        style={styles.textInput}
+      />
       <TouchableOpacity
         onPress={() => {
           signIn({username, password});
@@ -91,6 +93,7 @@ const styles = EStyleSheet.create({
     fontFamily: 'Montserrat-Medium',
   },
   textInput: {
+    color: 'black',
     backgroundColor: '#F8F8F8',
     borderColor: '#05F2BC',
     borderWidth: '2rem',

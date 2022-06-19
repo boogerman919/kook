@@ -1,25 +1,12 @@
 import React from 'react';
 import {View, Text, Dimensions, Animated, TextInput} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
+import MultilineTextInput from '../common/MultilineTextInput';
+import {countChar} from '../common/Subs';
 
 const window = Dimensions.get('window');
 
 EStyleSheet.build({$rem: window.width / 390});
-
-const countChar = (strang, c) => {
-  var result = 0;
-  var i = 0;
-  for (i; i < strang.length; i++) {
-    if (strang[i] === c) {
-      result++;
-    }
-  }
-  return result;
-};
-
-const MultilineTextInput = props => {
-  return <TextInput multiline numberOfLines={4} editable {...props} />;
-};
 
 const Feedback = ({
   showFeedback,
@@ -63,7 +50,7 @@ const Feedback = ({
           Feedback for the surfboard's quality
         </Text>
         <MultilineTextInput
-          style={[styles.feedbackInput, {borderColor: appFeedbackBorder}]}
+          style={[styles.feedbackInput, {borderColor: surfboardFeedbackBorder}]}
           value={surfboardFeedback}
           onChangeText={text => onChangeSurfboard(text)}
         />
@@ -71,7 +58,7 @@ const Feedback = ({
         <Text style={styles.spacer} />
         <Text style={styles.feedbackTitle}>Feedback for this app</Text>
         <MultilineTextInput
-          style={[styles.feedbackInput, {borderColor: surfboardFeedbackBorder}]}
+          style={[styles.feedbackInput, {borderColor: appFeedbackBorder}]}
           value={appFeedback}
           onChangeText={text => onChangeApp(text)}
         />
