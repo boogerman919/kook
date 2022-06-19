@@ -32,7 +32,12 @@ const readNdef = async () => {
     await NfcManager.requestTechnology(NfcTech.Ndef);
     // the resolved tag object will contain `ndefMessage` property
     const tag = await NfcManager.getTag();
-    console.warn('Tag found', tag);
+    let payload = tag.ndefMessage[0].payload;
+    let message = '';
+    for (let i = 0; i < payload.length; i++) {
+      message += String.fromCharCode(payload[i]);
+    }
+    console.warn('Tag found', message);
     return tag;
   } catch (e) {
     console.log(e.message);
@@ -42,8 +47,34 @@ const readNdef = async () => {
   }
 };
 
+async function writeNdef({type, value}) {
+  console.log('writing');
+  let result = false;
+
+  try {
+    // STEP 1
+    await NfcManager.requestTechnology(NfcTech.Ndef);
+
+    const bytes = Ndef.encodeMessage([Ndef.textRecord('unlock')]);
+
+    if (bytes) {
+      await NfcManager.ndefHandler // STEP 2
+        .writeNdefMessage(bytes); // STEP 3
+      result = true;
+    }
+  } catch (ex) {
+    console.warn(ex);
+  } finally {
+    // STEP 4
+    NfcManager.cancelTechnologyRequest();
+  }
+
+  return result;
+};
+
 module.exports = {
   countChar: countChar,
   timeConverter: timeConverter,
   readNdef: readNdef,
+  writeNdef: writeNdef,
 };

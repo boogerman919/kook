@@ -20,7 +20,7 @@ import Menu from '../Menu';
 import SubPages from '../subPages/SubPages';
 import NfcManager from 'react-native-nfc-manager';
 //TODO: moving readNdef to Subs.js might broke some things.
-import {timeConverter, readNdef} from '../common/Subs';
+import {timeConverter, readNdef, writeNdef} from '../common/Subs';
 
 import Config from '../../Config.json';
 
@@ -99,7 +99,7 @@ const HomeScreen = () => {
         setButtonColor('#ED474A');
         setButtonText('Cancel');
         setCurrentStage('nfc');
-        readNdef();
+        writeNdef();
         break;
       case 'nfc':
         startSession();
