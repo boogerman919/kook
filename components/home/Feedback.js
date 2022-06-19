@@ -120,7 +120,7 @@ const styles = EStyleSheet.create({
   feedbackInput: {
     color: 'black',
     fontSize: '18rem',
-    fontFamily: 'serif',
+    fontFamily: 'Montserrat-Medium',
     borderWidth: 1,
     borderColor: 'grey',
     borderRadius: 5,

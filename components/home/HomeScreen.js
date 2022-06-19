@@ -140,7 +140,7 @@ const HomeScreen = () => {
           return;
         }
 
-        // Send feedback to sever
+        // Send feedback to server
         // TODO:
 
         Keyboard.dismiss();

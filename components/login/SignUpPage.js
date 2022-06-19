@@ -110,6 +110,7 @@ const styles = EStyleSheet.create({
     borderRadius: '2rem',
     fontFamily: 'Montserrat-Medium',
     paddingLeft: '10rem',
+    color: 'black',
   },
   btn: {
     height: '50rem',
