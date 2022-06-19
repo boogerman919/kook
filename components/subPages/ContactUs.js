@@ -115,6 +115,7 @@ const ContactUs = ({display, changeSubpage}) => {
               return;
             }
 
+            setMessage('');
             sendContactMessage();
 
             changeSubpage('none');
