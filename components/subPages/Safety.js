@@ -101,7 +101,7 @@ const styles = EStyleSheet.create({
   },
   wrapper: {
     paddingBottom: 30 * rem,
-  }
+  },
 });
 
 export default Safety;

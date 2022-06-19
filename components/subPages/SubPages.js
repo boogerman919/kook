@@ -50,7 +50,7 @@ const SubPages = ({subpageState, rightOffset, changeSubpage}) => {
       </TouchableOpacity>
       {/* <Text>SubPages Page</Text> */}
       <RideHistory display={rideHistoryStyle()} />
-      <ContactUs display={contactUsStyle()} changeSubpage={changeSubpage} />
+      <ContactUs display={contactUsStyle()} />
       <Faq display={faqStyle()} />
       <Legal display={legalStyle()} />
       <Safety display={safetyStyle()} />
@@ -64,7 +64,7 @@ const SubPages = ({subpageState, rightOffset, changeSubpage}) => {
 const styles = EStyleSheet.create({
   mainView: {
     width: window.width,
-    height: window.height,
+    height: window.height + 61 * rem,
     position: 'absolute',
     zIndex: 2,
     right: window.width,
