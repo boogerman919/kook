@@ -1,4 +1,8 @@
-import NfcManager, {NfcTech} from 'react-native-nfc-manager';
+import NfcManager, {
+  NfcTech,
+  Ndef,
+  NfcA,
+} from 'react-native-nfc-manager';
 
 const countChar = (strang, c) => {
   var result = 0;
@@ -47,8 +51,29 @@ const readNdef = async () => {
   }
 };
 
-async function writeNdef({type, value}) {
-  console.log('writing');
+const writeNdef = async () => {
+  // let result = false;
+
+  // try {
+  //   // STEP 1
+  //   await NfcManager.requestTechnology(NfcTech.NfcA);
+
+  //   const bytes = Ndef.encodeMessage([Ndef.textRecord('unlock')]);
+
+  //   if (bytes) {
+  //     await NfcManager.nfcAHandler // STEP 2
+  //       .transceive(bytes); // STEP 3
+  //     result = true;
+  //   }
+  // } catch (ex) {
+  //   console.warn(ex);
+  // } finally {
+  //   // STEP 4
+  //   NfcManager.cancelTechnologyRequest();
+  // }
+
+  // return result;
+
   let result = false;
 
   try {
