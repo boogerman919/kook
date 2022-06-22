@@ -40,8 +40,7 @@ const readNdef = async () => {
     for (let i = 0; i < payload.length; i++) {
       message += String.fromCharCode(payload[i]);
     }
-    // TODO: change condition to locked
-    if (message.includes("unlock")) {
+    if (message.includes("locked")) {
       locked = true;
     }
   } catch (e) {
