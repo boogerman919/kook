@@ -204,7 +204,7 @@ const HomeScreen = () => {
   };
 
   const nfcUnlock = async () => {
-    await NfcManager.start();
+    NfcManager.start();
     let unlockSuccess = await writeNdef();
     if (unlockSuccess) {
       startSession();
@@ -249,7 +249,6 @@ const HomeScreen = () => {
   };
 
   const endSession = async () => {
-    console.log('triggered')
     let res = await fetch(Config.SERVER_URL + '/end_ride', {
       method: 'POST',
       headers: {

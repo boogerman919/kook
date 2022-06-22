@@ -1,7 +1,4 @@
-import NfcManager, {
-  NfcTech,
-  Ndef,
-} from 'react-native-nfc-manager';
+import NfcManager, {NfcTech, Ndef} from 'react-native-nfc-manager';
 
 const countChar = (strang, c) => {
   var result = 0;
@@ -40,8 +37,10 @@ const readNdef = async () => {
     for (let i = 0; i < payload.length; i++) {
       message += String.fromCharCode(payload[i]);
     }
-    if (message.includes("locked")) {
+    if (message.includes('locked')) {
       locked = true;
+    } else {
+      console.warn('not locked!');
     }
   } catch (e) {
     console.log(e.message);
@@ -63,11 +62,11 @@ const writeNdef = async () => {
 
     if (bytes) {
       console.log(bytes);
-      await NfcManager.ndefHandler
-        .writeNdefMessage(bytes);
+      await NfcManager.ndefHandler.writeNdefMessage(bytes);
       result = true;
     }
   } catch (ex) {
+    console.log(ex.message);
   } finally {
     NfcManager.cancelTechnologyRequest();
   }
