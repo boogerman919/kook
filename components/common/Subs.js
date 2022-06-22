@@ -1,7 +1,6 @@
 import NfcManager, {
   NfcTech,
   Ndef,
-  NfcA,
 } from 'react-native-nfc-manager';
 
 const countChar = (strang, c) => {
@@ -30,7 +29,7 @@ const timeConverter = time => {
 };
 
 const readNdef = async () => {
-  console.log('reading');
+  let locked = false;
   try {
     // register for the NFC tag with NDEF in it
     await NfcManager.requestTechnology(NfcTech.Ndef);
@@ -41,56 +40,36 @@ const readNdef = async () => {
     for (let i = 0; i < payload.length; i++) {
       message += String.fromCharCode(payload[i]);
     }
-    console.warn('Tag found', message);
-    return tag;
+    // TODO: change condition to locked
+    if (message.includes("unlock")) {
+      locked = true;
+    }
   } catch (e) {
     console.log(e.message);
   } finally {
     // stop the nfc scanning
     NfcManager.cancelTechnologyRequest();
   }
+
+  return locked;
 };
 
 const writeNdef = async () => {
-  // let result = false;
-
-  // try {
-  //   // STEP 1
-  //   await NfcManager.requestTechnology(NfcTech.NfcA);
-
-  //   const bytes = Ndef.encodeMessage([Ndef.textRecord('unlock')]);
-
-  //   if (bytes) {
-  //     await NfcManager.nfcAHandler // STEP 2
-  //       .transceive(bytes); // STEP 3
-  //     result = true;
-  //   }
-  // } catch (ex) {
-  //   console.warn(ex);
-  // } finally {
-  //   // STEP 4
-  //   NfcManager.cancelTechnologyRequest();
-  // }
-
-  // return result;
-
   let result = false;
 
   try {
-    // STEP 1
     await NfcManager.requestTechnology(NfcTech.Ndef);
 
     const bytes = Ndef.encodeMessage([Ndef.textRecord('unlock')]);
 
     if (bytes) {
-      await NfcManager.ndefHandler // STEP 2
-        .writeNdefMessage(bytes); // STEP 3
+      console.log(bytes);
+      await NfcManager.ndefHandler
+        .writeNdefMessage(bytes);
       result = true;
     }
   } catch (ex) {
-    console.warn(ex);
   } finally {
-    // STEP 4
     NfcManager.cancelTechnologyRequest();
   }
 

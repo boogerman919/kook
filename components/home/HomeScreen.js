@@ -24,8 +24,6 @@ import {timeConverter, readNdef, writeNdef} from '../common/Subs';
 
 import Config from '../../Config.json';
 
-NfcManager.start();
-
 // w: 390 h: 844
 const window = Dimensions.get('window');
 
@@ -99,13 +97,28 @@ const HomeScreen = () => {
         setButtonColor('#ED474A');
         setButtonText('Cancel');
         setCurrentStage('nfc');
-        writeNdef();
+        nfcUnlock();
         break;
       case 'nfc':
-        startSession();
+        NfcManager.cancelTechnologyRequest();
+        setHeightRatio(2.8);
+        setButtonText('Surf');
+        setButtonColor('#00EBB6');
+        setCurrentStage('landing');
         break;
       case 'started':
-        endSession();
+        setButtonColor('#ED474A');
+        setButtonText('Cancel');
+        setHeightRatio(1.22);
+        setCurrentStage('scanLock');
+        checkNfcLock();
+        break;
+      case 'scanLock':
+        NfcManager.cancelTechnologyRequest();
+        setButtonColor('#00EBB6');
+        setButtonText('End Session');
+        setHeightRatio(2);
+        setCurrentStage('started');
         break;
       case 'returned':
         setHeightRatio(1.22);
@@ -190,6 +203,26 @@ const HomeScreen = () => {
     }
   };
 
+  const nfcUnlock = async () => {
+    await NfcManager.start();
+    let unlockSuccess = await writeNdef();
+    if (unlockSuccess) {
+      startSession();
+    } else {
+      setHeightRatio(2.8);
+      setButtonText('Surf');
+      setButtonColor('#00EBB6');
+      setCurrentStage('landing');
+    }
+  };
+
+  const checkNfcLock = async () => {
+    let locked = await readNdef();
+    if (locked) {
+      endSession();
+    }
+  };
+
   const startSession = async () => {
     let res = await fetch(Config.SERVER_URL + '/start_ride', {
       method: 'POST',
@@ -205,9 +238,9 @@ const HomeScreen = () => {
     let timeNow = new Date().getTime();
     setStopwatchTime(Math.floor((timeNow - startTime) / 1000));
     setHeightRatio(2);
-    setButtonColor('#D2D2D2');
+    setButtonColor('#00EBB6');
     setButtonText('End Session');
-    setButtonOpacity(1);
+    // setButtonOpacity(1);
     setShowStopwatch(1);
     setCurrentStage('started');
     BackgroundTimer.runBackgroundTimer(() => {
@@ -216,6 +249,7 @@ const HomeScreen = () => {
   };
 
   const endSession = async () => {
+    console.log('triggered')
     let res = await fetch(Config.SERVER_URL + '/end_ride', {
       method: 'POST',
       headers: {
@@ -231,6 +265,7 @@ const HomeScreen = () => {
     BackgroundTimer.stopBackgroundTimer();
     setButtonOpacity(0.2);
     setButtonColor('#00EBB6');
+    setButtonText('Next');
     setCurrentStage('returned');
   };
 

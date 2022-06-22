@@ -83,7 +83,7 @@ const Menu = ({showMenu, toggleMenu, changeSubpage}) => {
             changeSubpage('legal');
           }}
           style={styles.accNameBtn}>
-          <Text style={styles.itemText}>Legal</Text>
+          <Text style={styles.itemText}>Terms & Conditions</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.logOutBtn}>
           <Text
