@@ -13,7 +13,7 @@ const Menu = ({showMenu, toggleMenu, changeSubpage}) => {
 
   return (
     <Modal
-      style={{margin: 0}}
+      style={styles.modal}
       animationIn="slideInLeft"
       animationInTiming={250}
       animationOut="slideOutLeft"
@@ -42,14 +42,13 @@ const Menu = ({showMenu, toggleMenu, changeSubpage}) => {
           style={styles.accNameBtn}>
           <Text style={styles.accNameText}>Account Name</Text>
         </TouchableOpacity>
-        {/* 
         <TouchableOpacity
           onPress={() => {
             changeSubpage('');
           }}
           style={styles.accNameBtn}>
           <Text style={styles.itemText}>Wallet</Text>
-        </TouchableOpacity> */}
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
             changeSubpage('rideHistory');
@@ -101,6 +100,9 @@ const Menu = ({showMenu, toggleMenu, changeSubpage}) => {
 };
 
 const styles = EStyleSheet.create({
+  modal: {
+    margin: 0,
+  },
   container: {
     height: window.height - 13,
     width: '275rem',
@@ -144,8 +146,8 @@ const styles = EStyleSheet.create({
     fontFamily: 'Montserrat-Medium',
   },
   logOutBtn: {
-    marginTop: '300rem',
-    marginBottom: '60rem',
+    marginTop: '40rem',
+    marginBottom: '50rem',
   },
   logOutText: {
     color: '#6A6A6A',

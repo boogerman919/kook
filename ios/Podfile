@@ -13,7 +13,8 @@ target 'Kook' do
   )
 
   pod 'react-native-background-timer', :path => '../node_modules/react-native-background-timer'
-  pod 'RNGestureHandler', :podspec => '../node_modules/react-native-gesture-handler/RNGestureHandler.podspec'
+  pod 'ReactNativeART', :path => '../node_modules/@react-native-community/art'
+  # pod 'RNGestureHandler', :podspec => '../node_modules/react-native-gesture-handler/RNGestureHandler.podspec'
 
   target 'KookTests' do
     inherit! :complete

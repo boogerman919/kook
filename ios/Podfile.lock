@@ -276,7 +276,7 @@ PODS:
     - React-Core
   - react-native-nfc-manager (3.13.3):
     - React-Core
-  - react-native-safe-area-context (4.2.2):
+  - react-native-safe-area-context (4.2.5):
     - RCT-Folly
     - RCTRequired
     - RCTTypeSafety
@@ -347,9 +347,11 @@ PODS:
     - React-jsi (= 0.66.4)
     - React-logger (= 0.66.4)
     - React-perflogger (= 0.66.4)
+  - ReactNativeART (1.2.0):
+    - React
   - RNCMaskedView (0.1.11):
     - React
-  - RNGestureHandler (2.3.2):
+  - RNGestureHandler (2.4.2):
     - React-Core
   - RNReanimated (2.5.0):
     - DoubleConversion
@@ -442,8 +444,9 @@ DEPENDENCIES:
   - React-RCTVibration (from `../node_modules/react-native/Libraries/Vibration`)
   - React-runtimeexecutor (from `../node_modules/react-native/ReactCommon/runtimeexecutor`)
   - ReactCommon/turbomodule/core (from `../node_modules/react-native/ReactCommon`)
+  - "ReactNativeART (from `../node_modules/@react-native-community/art`)"
   - "RNCMaskedView (from `../node_modules/@react-native-community/masked-view`)"
-  - RNGestureHandler (from `../node_modules/react-native-gesture-handler/RNGestureHandler.podspec`)
+  - RNGestureHandler (from `../node_modules/react-native-gesture-handler`)
   - RNReanimated (from `../node_modules/react-native-reanimated`)
   - RNScreens (from `../node_modules/react-native-screens`)
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
@@ -530,10 +533,12 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/runtimeexecutor"
   ReactCommon:
     :path: "../node_modules/react-native/ReactCommon"
+  ReactNativeART:
+    :path: "../node_modules/@react-native-community/art"
   RNCMaskedView:
     :path: "../node_modules/@react-native-community/masked-view"
   RNGestureHandler:
-    :podspec: "../node_modules/react-native-gesture-handler/RNGestureHandler.podspec"
+    :path: "../node_modules/react-native-gesture-handler"
   RNReanimated:
     :path: "../node_modules/react-native-reanimated"
   RNScreens:
@@ -574,7 +579,7 @@ SPEC CHECKSUMS:
   React-logger: 933f80c97c633ee8965d609876848148e3fef438
   react-native-background-timer: 17ea5e06803401a379ebf1f20505b793ac44d0fe
   react-native-nfc-manager: 445de2abb7531bffcd697fdcd271b479ea53f34f
-  react-native-safe-area-context: da2d11bd7df9bf7779e9bdc85081c141cfa544f4
+  react-native-safe-area-context: ebf8c413eb8b5f7c392a036a315eb7b46b96845f
   React-perflogger: 93075d8931c32cd1fce8a98c15d2d5ccc4d891bd
   React-RCTActionSheet: 7d3041e6761b4f3044a37079ddcb156575fb6d89
   React-RCTAnimation: 743e88b55ac62511ae5c2e22803d4f503f2a3a13
@@ -587,13 +592,14 @@ SPEC CHECKSUMS:
   React-RCTVibration: e3ffca672dd3772536cb844274094b0e2c31b187
   React-runtimeexecutor: dec32ee6f2e2a26e13e58152271535fadff5455a
   ReactCommon: 57b69f6383eafcbd7da625bfa6003810332313c4
+  ReactNativeART: 78edc68dd4a1e675338cd0cd113319cf3a65f2ab
   RNCMaskedView: 0e1bc4bfa8365eba5fbbb71e07fbdc0555249489
-  RNGestureHandler: 6e757e487a4834e7280e98e9bac66d2d9c575e9c
+  RNGestureHandler: 61628a2c859172551aa2100d3e73d1e57878392f
   RNReanimated: ee33ab40fa252332a36aeed9d936801ed9700b24
   RNScreens: 40a2cb40a02a609938137a1e0acfbf8fc9eebf19
   Yoga: e7dc4e71caba6472ff48ad7d234389b91dadc280
   YogaKit: f782866e155069a2cca2517aafea43200b01fd5a
 
-PODFILE CHECKSUM: c63cb623607cdc5c95a47c260388b383ff8f2900
+PODFILE CHECKSUM: 98b98f3d398aad6cefc4a9b8292375a9668024ac
 
-COCOAPODS: 1.11.2
+COCOAPODS: 1.11.3
