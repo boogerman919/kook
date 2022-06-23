@@ -38,7 +38,7 @@ const readNdef = async () => {
       message += String.fromCharCode(payload[i]);
     }
     // TODO: change back to "locked"
-    if (message.includes('lock')) {
+    if (message.includes('locked')) {
       locked = true;
     } else {
       console.warn('not locked!');
