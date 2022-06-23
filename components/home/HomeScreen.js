@@ -16,6 +16,7 @@ import Button from './Buttons';
 import Stopwatch from './Stopwatch';
 import Receipt from './Receipt';
 import Feedback from './Feedback';
+import PanelComment from './PanelComment'
 import Menu from '../Menu';
 import SubPages from '../subPages/SubPages';
 import NfcManager from 'react-native-nfc-manager';
@@ -88,6 +89,19 @@ const HomeScreen = () => {
   // record ride_id
   const [ride_id, setRide_id] = useState(0);
 
+  // show text on panel or not
+  const [showComment, setShowComment] = useState(1);
+
+  // panel text
+  const [commentText, setCommentText] = useState('$5 / hour');
+
+  // panel text color
+  const [commentColor, setCommentColor] = useState('#6A6A6A');
+
+  // panel text size
+  const [commentTextSize, setCommentTextSize] = useState(14);
+
+
   // Things that will happen after pressing the main button
   const buttonReaction = currentStage => {
     console.log(currentStage);
@@ -97,6 +111,7 @@ const HomeScreen = () => {
         setButtonColor('#ED474A');
         setButtonText('Cancel');
         setCurrentStage('nfc');
+        setShowComment(0);
         nfcUnlock();
         break;
       case 'nfc':
@@ -104,13 +119,18 @@ const HomeScreen = () => {
         setHeightRatio(2.8);
         setButtonText('Surf');
         setButtonColor('#00EBB6');
+        setShowComment(1);
         setCurrentStage('landing');
         break;
       case 'started':
         setButtonColor('#ED474A');
         setButtonText('Cancel');
-        setHeightRatio(1.22);
+        setHeightRatio(1.7);
         setCurrentStage('scanLock');
+        setCommentText('Scan the NFC to end session');
+        setCommentTextSize(20);
+        setCommentColor('black');
+        setShowComment(1);
         checkNfcLock();
         break;
       case 'scanLock':
@@ -118,12 +138,14 @@ const HomeScreen = () => {
         setButtonColor('#00EBB6');
         setButtonText('End Session');
         setHeightRatio(2);
+        setShowComment(0);
         setCurrentStage('started');
         break;
       case 'returned':
         setHeightRatio(1.22);
         setShowStopwatch(0);
         setButtonText('Next');
+        setShowComment(0);
         setShowReceipt(1);
         setCurrentStage('charge');
         break;
@@ -164,6 +186,10 @@ const HomeScreen = () => {
         setShowFeedback(0);
         setHeightRatio(2.8);
         setStopwatchTime(0);
+        setCommentText('$5 / hour');
+        setCommentColor('#6A6A6A');
+        setCommentTextSize(14);
+        setShowComment(1);
         setButtonText('Surf');
         setCurrentStage('landing');
         break;
@@ -260,9 +286,9 @@ const HomeScreen = () => {
     let startTime = new Date(result.start_time).getTime();
     let endTime = new Date(result.end_time).getTime();
     setStopwatchTime(Math.floor((endTime - startTime) / 1000));
-    setHeightRatio(2);
     BackgroundTimer.stopBackgroundTimer();
     setButtonOpacity(0.2);
+    setCommentText('Session ended');
     setButtonColor('#00EBB6');
     setButtonText('Next');
     setCurrentStage('returned');
@@ -278,7 +304,7 @@ const HomeScreen = () => {
 
   /* ANIMATIONS!!! */
 
-  // panal motion effect
+  // panel motion effect
   const panelHeight = useRef(
     new Animated.Value((window.width / heightRatio) * rem),
   ).current;
@@ -345,6 +371,13 @@ const HomeScreen = () => {
       onChangeAppFeedback={onChangeAppFeedback}
       appFeedbackBorder={appFeedbackBorder}
       surfboardFeedbackBorder={surfboardFeedbackBorder}
+    />,
+    <PanelComment 
+      key="panelcomment" 
+      showComment={showComment}
+      commentText={commentText}
+      commentColor={commentColor}
+      commentTextSize={commentTextSize}
     />,
   ];
 

@@ -32,6 +32,7 @@ const styles = EStyleSheet.create({
     borderBottomWidth: '130rem',
     borderColor: '#F8F8F8',
     flexDirection: 'column',
+    alignItems: 'center',
   },
 });
 
