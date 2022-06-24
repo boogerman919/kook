@@ -39,29 +39,18 @@ const Feedback = ({
       ]}>
       <View key="title container" style={styles.titleContainer}>
         <Text key="title" style={styles.title}>
-          Your fees have been waived!
+          Thanks for using Kook!
         </Text>
         <Text key="text" style={styles.text}>
-          Consider giving us feedback :)
+          Let us know what we can improve on!
         </Text>
-
         <Text style={styles.feedbackTitle} />
-        <Text style={styles.feedbackTitle}>
-          Feedback for the surfboard's quality
-        </Text>
         <MultilineTextInput
           style={[styles.feedbackInput, {borderColor: surfboardFeedbackBorder}]}
           value={surfboardFeedback}
           onChangeText={text => onChangeSurfboard(text)}
         />
-
-        <Text style={styles.spacer} />
-        <Text style={styles.feedbackTitle}>Feedback for this app</Text>
-        <MultilineTextInput
-          style={[styles.feedbackInput, {borderColor: appFeedbackBorder}]}
-          value={appFeedback}
-          onChangeText={text => onChangeApp(text)}
-        />
+        <Text style={styles.feedbackTitle}>30 words minimum</Text>
       </View>
     </Animated.View>
   );
@@ -77,11 +66,6 @@ const styles = EStyleSheet.create({
   titleContainer: {
     marginBottom: '10rem',
   },
-  textContainer: {
-    alignSelf: 'stretch',
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-  },
   date: {
     color: 'black',
     fontSize: '14rem',
@@ -89,13 +73,15 @@ const styles = EStyleSheet.create({
   },
   title: {
     color: 'black',
-    fontSize: '22rem',
+    fontSize: '25rem',
     fontFamily: 'Montserrat-Bold',
     textAlign: 'center',
+    marginBottom: '3rem',
+    marginTop: '20rem',
   },
   text: {
     color: 'black',
-    fontSize: '18rem',
+    fontSize: '15rem',
     fontFamily: 'Montserrat-Medium',
     textAlign: 'center',
   },
@@ -114,6 +100,7 @@ const styles = EStyleSheet.create({
     padding: 10,
     textAlign: 'left',
     textAlignVertical: 'top',
+    marginBottom: '3rem',
   },
   feedbackTitle: {
     color: '#9c9c9c',

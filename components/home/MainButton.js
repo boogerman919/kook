@@ -30,7 +30,7 @@ const styles = EStyleSheet.create({
     position: 'absolute',
     width: '78%',
     aspectRatio: 5,
-    bottom: '5%',
+    bottom: '7%',
     backgroundColor: '#00EBB6',
     shadowOffset: {width: 0, height: '-2rem'},
     shadowOpacity: 0.15,

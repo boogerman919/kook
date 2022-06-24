@@ -6,6 +6,8 @@ import {
   Animated,
   Keyboard,
   TouchableWithoutFeedback,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import BackgroundTimer from 'react-native-background-timer';
 import EStyleSheet from 'react-native-extended-stylesheet';
@@ -16,7 +18,7 @@ import Button from './Buttons';
 import Stopwatch from './Stopwatch';
 import Receipt from './Receipt';
 import Feedback from './Feedback';
-import PanelComment from './PanelComment'
+import PanelComment from './PanelComment';
 import Menu from '../Menu';
 import SubPages from '../subPages/SubPages';
 import NfcManager from 'react-native-nfc-manager';
@@ -75,7 +77,7 @@ const HomeScreen = () => {
 
   // surfboard feedback border color
   const [surfboardFeedbackBorder, setSurfboardFeedbackBorder] =
-    useState('grey');
+    useState('#00EBB6');
 
   // surfboard quality feedback text
   const [surfboardFeedback, onChangeSurfboardFeedback] = useState('');
@@ -100,7 +102,6 @@ const HomeScreen = () => {
 
   // panel text size
   const [commentTextSize, setCommentTextSize] = useState(14);
-
 
   // Things that will happen after pressing the main button
   const buttonReaction = currentStage => {
@@ -152,7 +153,7 @@ const HomeScreen = () => {
       case 'charge':
         setShowReceipt(0);
         setTriggerReceipt(1);
-        setHeightRatio(0.84);
+        setHeightRatio(window.width / window.height);
         setStopwatchTime(0);
         setShowFeedback(1);
         setButtonText('Done');
@@ -161,17 +162,11 @@ const HomeScreen = () => {
       case 'feedback':
         // Check if inputs are empty
         let anyEmpty = false;
-        if (appFeedback.trim() === '') {
-          setAppFeedbackBorder('#ed2e1c');
-          anyEmpty = true;
-        } else {
-          setAppFeedbackBorder('grey');
-        }
         if (surfboardFeedback.trim() === '') {
           setSurfboardFeedbackBorder('#ed2e1c');
           anyEmpty = true;
         } else {
-          setSurfboardFeedbackBorder('grey');
+          setSurfboardFeedbackBorder('#00EBB6');
         }
         if (anyEmpty) {
           return;
@@ -372,8 +367,8 @@ const HomeScreen = () => {
       appFeedbackBorder={appFeedbackBorder}
       surfboardFeedbackBorder={surfboardFeedbackBorder}
     />,
-    <PanelComment 
-      key="panelcomment" 
+    <PanelComment
+      key="panelcomment"
       showComment={showComment}
       commentText={commentText}
       commentColor={commentColor}
@@ -382,41 +377,55 @@ const HomeScreen = () => {
   ];
 
   return (
-    <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
-      <View style={styles.container}>
-        <Menu
-          showMenu={showMenu}
-          toggleMenu={toggleMenu}
-          changeSubpage={changeSubpage}
-        />
-        <Button
-          position={{left: -155 * rem, top: 20 * rem}}
-          style={styles.toggleMenu}
-          action={toggleMenu}
-        />
-        <Panel panelHeight={panelHeight} contents={contents} />
-        <MainButton
-          buttonReaction={buttonReaction}
-          currentStage={currentStage}
-          text={buttonText}
-          buttonColor={buttonColor}
-          buttonOpacity={buttonOpacity}
-        />
-        <Stopwatch
-          stopwatchOpacity={stopwatchOpacity}
-          time={timeConverter(stopwatchTime)}
-        />
-        <SubPages
-          subpageState={subpageState}
-          rightOffset={subpageRightOffset}
-          changeSubpage={changeSubpage}
-        />
-      </View>
-    </TouchableWithoutFeedback>
+    <KeyboardAvoidingView
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+      enabled={false}
+      style={{flex: 1}}>
+      <TouchableWithoutFeedback onPress={Keyboard.dismiss} accessible={false}>
+        <View style={styles.container}>
+          <Menu
+            showMenu={showMenu}
+            toggleMenu={toggleMenu}
+            changeSubpage={changeSubpage}
+          />
+          <Button
+            position={{left: -155 * rem, top: 20 * rem}}
+            style={styles.toggleMenu}
+            action={toggleMenu}
+          />
+          <Panel panelHeight={panelHeight} contents={contents} />
+          <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            style={styles.keyboardView}>
+            <MainButton
+              buttonReaction={buttonReaction}
+              currentStage={currentStage}
+              text={buttonText}
+              buttonColor={buttonColor}
+              buttonOpacity={buttonOpacity}
+            />
+          </KeyboardAvoidingView>
+          <Stopwatch
+            stopwatchOpacity={stopwatchOpacity}
+            time={timeConverter(stopwatchTime)}
+          />
+          <SubPages
+            subpageState={subpageState}
+            rightOffset={subpageRightOffset}
+            changeSubpage={changeSubpage}
+          />
+        </View>
+      </TouchableWithoutFeedback>
+    </KeyboardAvoidingView>
   );
 };
 
 const styles = EStyleSheet.create({
+  keyboardView: {
+    flex: 1,
+    alignItems: 'center',
+    marginBottom: '-20rem'
+  },
   container: {
     flex: 1,
     alignItems: 'center',
