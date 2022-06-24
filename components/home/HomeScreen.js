@@ -21,6 +21,7 @@ import Feedback from './Feedback';
 import PanelComment from './PanelComment';
 import Menu from '../Menu';
 import SubPages from '../subPages/SubPages';
+import NfcPage from "./NfcPage";
 import NfcManager from 'react-native-nfc-manager';
 //TODO: moving readNdef to Subs.js might broke some things.
 import {timeConverter, readNdef, writeNdef} from '../common/Subs';
@@ -103,6 +104,9 @@ const HomeScreen = () => {
   // panel text size
   const [commentTextSize, setCommentTextSize] = useState(14);
 
+  // nfc page opacity
+  const [showNfcPage, setShowNfcPage] = useState(0);
+
   // Things that will happen after pressing the main button
   const buttonReaction = currentStage => {
     console.log(currentStage);
@@ -113,9 +117,11 @@ const HomeScreen = () => {
         setButtonText('Cancel');
         setCurrentStage('nfc');
         setShowComment(0);
+        setShowNfcPage(1);
         nfcUnlock();
         break;
       case 'nfc':
+        setShowNfcPage(0);
         NfcManager.cancelTechnologyRequest();
         setHeightRatio(2.8);
         setButtonText('Surf');
@@ -126,7 +132,7 @@ const HomeScreen = () => {
       case 'started':
         setButtonColor('#ED474A');
         setButtonText('Cancel');
-        setHeightRatio(1.7);
+        setHeightRatio(window.width / window.height);
         setCurrentStage('scanLock');
         setCommentText('Scan the NFC to end session');
         setCommentTextSize(20);
@@ -263,6 +269,7 @@ const HomeScreen = () => {
     setButtonText('End Session');
     // setButtonOpacity(1);
     setShowStopwatch(1);
+    setShowNfcPage(0);
     setCurrentStage('started');
     BackgroundTimer.runBackgroundTimer(() => {
       setStopwatchTime(prevStopwatchTime => prevStopwatchTime + 1);
@@ -287,6 +294,7 @@ const HomeScreen = () => {
     setButtonColor('#00EBB6');
     setButtonText('Next');
     setCurrentStage('returned');
+    setHeightRatio(1.7);
   };
 
   const toggleMenu = () => {
@@ -352,6 +360,7 @@ const HomeScreen = () => {
   }, [showSubpage, subpageRightOffset]);
 
   var contents = [
+    <NfcPage key="nfcPage" showNfcPage={showNfcPage} />,
     <Receipt
       key="receipt"
       usedTime={stopwatchTime}
