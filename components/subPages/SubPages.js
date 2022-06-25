@@ -54,7 +54,7 @@ const SubPages = ({subpageState, rightOffset, changeSubpage}) => {
       </TouchableOpacity>
       {/* <Text>SubPages Page</Text> */}
       <RideHistory display={rideHistoryStyle()} />
-      <ContactUs display={contactUsStyle()} />
+      <ContactUs display={contactUsStyle()} changeSubpage={changeSubpage} />
       <Faq display={faqStyle()} />
       <Legal display={legalStyle()} />
       <Safety display={safetyStyle()} />
