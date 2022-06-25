@@ -40,7 +40,7 @@ const HomeScreen = () => {
   // stages: ['landing', 'nfc', 'started', 'returned', 'charge', 'feedback']
   const [currentStage, setCurrentStage] = useState('landing');
 
-  // subpages: ['none', 'rideHistory', 'safety', 'faq', 'contactUs', 'legal']
+  // subpages: ['none', 'rideHistory', 'safety', 'faq', 'contactUs', 'legal', 'wallet']
   const [subpageState, setSubpage] = useState('none');
 
   // set to show the subpages or not
@@ -222,6 +222,7 @@ const HomeScreen = () => {
       case 'safety':
       case 'faq':
       case 'contactUs':
+      case 'wallet':
       case 'legal':
         setShowMenu(false);
         setShowSubpage(true);

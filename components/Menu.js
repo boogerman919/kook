@@ -44,7 +44,7 @@ const Menu = ({showMenu, toggleMenu, changeSubpage}) => {
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => {
-            changeSubpage('');
+            changeSubpage('wallet');
           }}
           style={styles.accNameBtn}>
           <Text style={styles.itemText}>Wallet</Text>

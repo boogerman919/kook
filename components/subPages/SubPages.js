@@ -16,6 +16,7 @@ import ContactUs from './ContactUs';
 import Faq from './Faq';
 import Legal from './Legal';
 import Safety from './Safety';
+import Wallet from './Wallet';
 
 const window = Dimensions.get('window');
 
@@ -38,6 +39,9 @@ const SubPages = ({subpageState, rightOffset, changeSubpage}) => {
   const safetyStyle = () => {
     return subpageState === 'safety' ? 'flex' : 'none';
   };
+  const walletStyle = () => {
+    return subpageState === 'wallet' ? 'flex' : 'none';
+  };
 
   return (
     <Animated.View style={[styles.mainView, {right: rightOffset}]}>
@@ -54,6 +58,7 @@ const SubPages = ({subpageState, rightOffset, changeSubpage}) => {
       <Faq display={faqStyle()} />
       <Legal display={legalStyle()} />
       <Safety display={safetyStyle()} />
+      <Wallet display={walletStyle()} />
 
       {/* for when bug occures and none of the above pages are displayed */}
       <View style={styles.backgroundView} />
