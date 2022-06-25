@@ -54,7 +54,7 @@ const ContactUs = ({display}) => {
       <Text style={styles.boxTitle}>Phone Number</Text>
       <TextInput style={styles.textInput}></TextInput>
       <Text style={styles.boxTitle}>Message</Text>
-      <MultilineTextInput 
+      <MultilineTextInput
         value={message}
         onChangeText={text => setMessage(text)}
         style={styles.feedbackInput}
