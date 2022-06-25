@@ -23,11 +23,9 @@ const Wallet = ({display}) => {
     <View style={[styles.container]} display={display}>
       <Text style={styles.title}>Wallet</Text>
       <Text style={styles.listTitle}>PAYMENT METHODS</Text>
-      <View style={styles.cardBtn}>
-        <TouchableOpacity style={{flex: 1, justifyContent: 'center'}}>
-          <Text style={styles.text}>Add card</Text>
-        </TouchableOpacity>
-      </View>
+      <TouchableOpacity style={styles.cardBtn}>
+        <Text style={styles.text}>Add card</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -46,7 +44,7 @@ const styles = EStyleSheet.create({
     color: 'black',
     width: '100%',
     textAlign: 'center',
-    paddingBottom: '25rem',
+    paddingBottom: '40rem',
     fontFamily: 'Montserrat-SemiBold',
   },
   listTitle: {
@@ -65,7 +63,8 @@ const styles = EStyleSheet.create({
     borderColor: '#C5C5C5',
     borderTopWidth: '0.5rem',
     borderBottomWidth: '0.5rem',
-    marginTop: '20rem',
+    marginTop: '10rem',
+    justifyContent: 'center',
   },
   text: {
     color: 'black',

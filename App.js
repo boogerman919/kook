@@ -153,7 +153,7 @@ const App = () => {
           screenOptions={{
             headerShown: false,
           }}>
-          {state.userToken == null ? (
+          {state.userToken != null ? (
             <>
               <Stack.Screen
                 name="Login"

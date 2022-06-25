@@ -104,7 +104,7 @@ const styles = EStyleSheet.create({
     margin: 0,
   },
   container: {
-    height: window.height - 13,
+    height: '100%',
     width: '275rem',
     left: 0,
     backgroundColor: '#F8F8F8',
@@ -114,11 +114,11 @@ const styles = EStyleSheet.create({
     paddingLeft: '25rem',
     paddingTop: '26rem',
     alignItems: 'flex-start',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
   },
   closeBtn: {
     //enlarged and transparent for easy clicking
-    marginBottom: '63rem',
+    marginBottom: '10rem',
     width: '42rem',
     height: '42rem',
   },
