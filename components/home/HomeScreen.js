@@ -21,6 +21,7 @@ import Feedback from './Feedback';
 import PanelComment from './PanelComment';
 import Menu from '../Menu';
 import SubPages from '../subPages/SubPages';
+import SubPages2 from '../subPages/subPages2/SubPages2.js';
 import NfcPage from "./NfcPage";
 import NfcManager from 'react-native-nfc-manager';
 //TODO: moving readNdef to Subs.js might broke some things.
@@ -43,8 +44,14 @@ const HomeScreen = () => {
   // subpages: ['none', 'rideHistory', 'safety', 'faq', 'contactUs', 'legal', 'wallet']
   const [subpageState, setSubpage] = useState('none');
 
+  // just to set the content on the subpage to card page
+  const [subpageState2, setSubpage2] = useState('none');
+
   // set to show the subpages or not
   const [showSubpage, setShowSubpage] = useState(false);
+
+  // set to show the card page or not
+  const [showSubpage2, setShowSubpage2] = useState(false);
 
   // Height Ratio for Panel's Height
   const [heightRatio, setHeightRatio] = useState(2.8);
@@ -231,6 +238,20 @@ const HomeScreen = () => {
     }
   };
 
+  const changeSubpage2 = subpage => {
+    switch (subpage) {
+      case 'none':
+        setSubpage2(subpage);
+        setShowSubpage2(false);
+        break;
+      case 'addCard':
+        setShowMenu(false);
+        setShowSubpage2(true);
+        setSubpage2(subpage);
+        break;
+    }
+  };
+
   const nfcUnlock = async () => {
     NfcManager.start();
     let unlockSuccess = await writeNdef();
@@ -360,6 +381,20 @@ const HomeScreen = () => {
     }).start();
   }, [showSubpage, subpageRightOffset]);
 
+  // subpage2 slide in animation
+  const subpage2RightOffset = useRef(new Animated.Value(0)).current;
+  useEffect(() => {
+    var toValue = window.width;
+    if (showSubpage2) {
+      toValue = 0;
+    }
+    Animated.timing(subpage2RightOffset, {
+      toValue: toValue,
+      useNativeDriver: false,
+      duration: 200,
+    }).start();
+  }, [showSubpage2, subpage2RightOffset]);
+
   var contents = [
     <NfcPage key="nfcPage" showNfcPage={showNfcPage} />,
     <Receipt
@@ -423,6 +458,13 @@ const HomeScreen = () => {
             subpageState={subpageState}
             rightOffset={subpageRightOffset}
             changeSubpage={changeSubpage}
+            setShowSubpage2={setShowSubpage2}
+            changeSubpage2={changeSubpage2}
+          />
+          <SubPages2
+            subpageState={subpageState2}
+            rightOffset={subpage2RightOffset}
+            changeSubpage={changeSubpage2}
           />
         </View>
       </TouchableWithoutFeedback>

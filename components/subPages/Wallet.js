@@ -18,12 +18,17 @@ const window = Dimensions.get('window');
 var rem = window.width / 390;
 EStyleSheet.build({$rem: rem});
 
-const Wallet = ({display}) => {
+const Wallet = ({display, setShowSubpage2, changeSubpage2}) => {
   return (
     <View style={[styles.container]} display={display}>
       <Text style={styles.title}>Wallet</Text>
       <Text style={styles.listTitle}>PAYMENT METHODS</Text>
-      <TouchableOpacity style={styles.cardBtn}>
+      <TouchableOpacity
+        style={styles.cardBtn}
+        onPress={() => {
+          setShowSubpage2(true);
+          changeSubpage2('addCard');
+        }}>
         <Text style={styles.text}>Add card</Text>
       </TouchableOpacity>
     </View>

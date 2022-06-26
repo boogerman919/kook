@@ -8,45 +8,19 @@ import {
   TouchableOpacity,
   TextInput,
 } from 'react-native';
-import {AuthContext} from './context';
+import {AuthContext} from '../context';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import RideHistory from './RideHistory';
-import ContactUs from './ContactUs';
-import Faq from './Faq';
-import Legal from './Legal';
-import Safety from './Safety';
-import Wallet from './Wallet';
+import AddCard from './AddCard';
 
 const window = Dimensions.get('window');
 
 var rem = window.width / 390;
 EStyleSheet.build({$rem: rem});
 
-const SubPages = ({
-  subpageState,
-  rightOffset,
-  changeSubpage,
-  setShowSubpage2,
-  changeSubpage2,
-}) => {
-  const rideHistoryStyle = () => {
-    return subpageState === 'rideHistory' ? 'flex' : 'none';
-  };
-  const contactUsStyle = () => {
-    return subpageState === 'contactUs' ? 'flex' : 'none';
-  };
-  const faqStyle = () => {
-    return subpageState === 'faq' ? 'flex' : 'none';
-  };
-  const legalStyle = () => {
-    return subpageState === 'legal' ? 'flex' : 'none';
-  };
-  const safetyStyle = () => {
-    return subpageState === 'safety' ? 'flex' : 'none';
-  };
-  const walletStyle = () => {
-    return subpageState === 'wallet' ? 'flex' : 'none';
+const SubPages2 = ({subpageState, rightOffset, changeSubpage}) => {
+  const addCardStyle = () => {
+    return subpageState === 'addCard' ? 'flex' : 'none';
   };
 
   return (
@@ -59,16 +33,7 @@ const SubPages = ({
         <Text style={styles.closeText}>⇦</Text>
       </TouchableOpacity>
       {/* <Text>SubPages Page</Text> */}
-      <RideHistory display={rideHistoryStyle()} />
-      <ContactUs display={contactUsStyle()} changeSubpage={changeSubpage} />
-      <Faq display={faqStyle()} />
-      <Legal display={legalStyle()} />
-      <Safety display={safetyStyle()} />
-      <Wallet
-        display={walletStyle()}
-        setShowSubpage2={setShowSubpage2}
-        changeSubpage2={changeSubpage2}
-      />
+      <AddCard display={addCardStyle()} changeSubpage={changeSubpage} />
 
       {/* for when bug occures and none of the above pages are displayed */}
       <View style={styles.backgroundView} />
@@ -114,4 +79,4 @@ const styles = EStyleSheet.create({
   },
 });
 
-export default SubPages;
+export default SubPages2;
