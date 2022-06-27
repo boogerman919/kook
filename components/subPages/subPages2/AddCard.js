@@ -54,34 +54,54 @@ const AddCard = ({display, changeSubpage}) => {
     });
   };
 
-  const checkInfoVaild = () => {
-    let valid = true;
-    if (cardNum.length == 0) {
-      setCardNumBorder('#ED474A');
-      valid = false;
-    }
-    if (expDate.length == 0) {
-      setExpDateBorder('#ED474A');
-      valid = false;
-    }
-    if (cvv.length == 0) {
-      setCVVBorder('#ED474A');
-      valid = false;
-    }
-    if (zipCode.length == 0) {
-      setZipCodeBorder('#ED474A');
-      valid = false;
-    }
-    return valid;
-  };
-
-  const CardTextStyle = () => {
+  const cardTextStyle = () => {
     let formattedNum = '';
     for (let i = 0; i < cardNum.length; i++) {
       if (i % 4 == 0 && i != 0) formattedNum += ' ';
       formattedNum += cardNum[i];
     }
     return formattedNum;
+  };
+
+  const dateTextStyle = () => {
+    let formattedDate = '';
+    for (let i = 0; i < expDate.length; i++) {
+      if (i % 2 == 0 && i != 0) formattedDate += '/';
+      formattedDate += expDate[i];
+    }
+    return formattedDate;
+  };
+
+  const checkDateValid = (text) => {
+    text = text.split('/').join('');
+    if (text.length < 4) return false;
+    const now = new Date();
+    let month = parseInt(text.substring(0, 2));
+    let year = parseInt(text.substring(text.length - 2, text.length));
+    console.log(month);
+    if (month > 12 || year < now.getFullYear() % 100) return false;
+    return true;
+  };
+
+  const checkInfoVaild = () => {
+    let valid = true;
+    if (cardNum.length != 16) {
+      setCardNumBorder('#ED474A');
+      valid = false;
+    }
+    if (!checkDateValid(expDate)) {
+      setExpDateBorder('#ED474A');
+      valid = false;
+    }
+    if (cvv.length != 3) {
+      setCVVBorder('#ED474A');
+      valid = false;
+    }
+    if (zipCode.length != 5) {
+      setZipCodeBorder('#ED474A');
+      valid = false;
+    }
+    return valid;
   };
 
   return (
@@ -91,7 +111,7 @@ const AddCard = ({display, changeSubpage}) => {
       {/* card number box */}
       <View style={[styles.boxContainer, {width: '85%'}]}>
         <TextInput
-          value={CardTextStyle()}
+          value={cardTextStyle()}
           onChangeText={text => {
             setCardNum(text.split(' ').join(''));
             setCardNumBorder(text.length == 19 ? '#00EBB6' : '#ED474A');
@@ -120,13 +140,15 @@ const AddCard = ({display, changeSubpage}) => {
         {/* exp date box */}
         <View style={[styles.boxContainer, {width: '60%'}]}>
           <TextInput
-            value={expDate}
+            value={dateTextStyle()}
             onChangeText={text => {
-              setExpDate(text);
-              setExpDateBorder(text.length == 0 ? '#ED474A' : '#00EBB6');
+              setExpDate(text.split('/').join(''));
+              setExpDateBorder(checkDateValid(text) ? '#00EBB6' : '#ED474A');
+              console.log(expDate);
             }}
             autoCapitalize="none"
             keyboardType="number-pad"
+            maxLength={5}
             style={[
               styles.textInput,
               {
@@ -185,11 +207,12 @@ const AddCard = ({display, changeSubpage}) => {
         style={styles.btn}
         onPress={() => {
           if (checkInfoVaild()) {
+            console.warn('card added!')
             changeSubpage('none');
-            setName('');
-            setEmail('');
-            setPhone('');
-            setMessage('');
+            setCardNum('');
+            setExpDate('');
+            setCVV('');
+            setZipCode('');
           }
         }}>
         <Text style={styles.btnText}>Done</Text>
