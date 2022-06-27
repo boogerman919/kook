@@ -149,6 +149,7 @@ const AddCard = ({display, changeSubpage}) => {
             autoCapitalize="none"
             keyboardType="number-pad"
             maxLength={5}
+            placeholder={'MM / YY'}
             style={[
               styles.textInput,
               {
@@ -170,6 +171,7 @@ const AddCard = ({display, changeSubpage}) => {
             autoCapitalize="none"
             keyboardType="number-pad"
             maxLength={3}
+            placeholder={'\u25CF' + '\u25CF' + '\u25CF'}
             style={[
               styles.textInput,
               {
@@ -207,7 +209,7 @@ const AddCard = ({display, changeSubpage}) => {
         style={styles.btn}
         onPress={() => {
           if (checkInfoVaild()) {
-            console.warn('card added!')
+            console.warn('card added!');
             changeSubpage('none');
             setCardNum('');
             setExpDate('');
