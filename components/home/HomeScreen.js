@@ -434,7 +434,7 @@ const HomeScreen = () => {
             changeSubpage={changeSubpage}
           />
           <Button
-            position={{left: -155 * rem, top: 20 * rem}}
+            position={{left: -155 * rem, top: 40 * rem}}
             style={styles.toggleMenu}
             action={toggleMenu}
           />

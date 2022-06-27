@@ -59,7 +59,7 @@ const styles = EStyleSheet.create({
     //enlarged and transparent for easy clicking
     position: 'relative',
     marginLeft: '18rem',
-    marginTop: '19rem',
+    marginTop: '40rem',
     zIndex: 99,
     backgroundColor: '#dbdbdb',
     height: '42rem',
