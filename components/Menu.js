@@ -49,20 +49,20 @@ const Menu = ({showMenu, toggleMenu, changeSubpage}) => {
           style={styles.accNameBtn}>
           <Text style={styles.itemText}>Wallet</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
             changeSubpage('rideHistory');
           }}
           style={styles.accNameBtn}>
           <Text style={styles.itemText}>Ride History</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
+        </TouchableOpacity> */}
+        {/* <TouchableOpacity
           onPress={() => {
             changeSubpage('safety');
           }}
           style={styles.accNameBtn}>
           <Text style={styles.itemText}>Safety</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity
           onPress={() => {
             changeSubpage('faq');
@@ -77,13 +77,13 @@ const Menu = ({showMenu, toggleMenu, changeSubpage}) => {
           style={styles.accNameBtn}>
           <Text style={styles.itemText}>Contact Us</Text>
         </TouchableOpacity>
-        <TouchableOpacity
+        {/* <TouchableOpacity
           onPress={() => {
             changeSubpage('legal');
           }}
           style={styles.accNameBtn}>
           <Text style={styles.itemText}>Terms & Conditions</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
         <TouchableOpacity style={styles.logOutBtn}>
           <Text
             onPress={() => {
@@ -112,13 +112,13 @@ const styles = EStyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: '10rem',
     paddingLeft: '25rem',
-    paddingTop: '26rem',
+    paddingTop: '50rem',
     alignItems: 'flex-start',
-    justifyContent: 'space-evenly',
+    justifyContent: 'flex-start',
   },
   closeBtn: {
     //enlarged and transparent for easy clicking
-    marginBottom: '10rem',
+    marginBottom: '25rem',
     width: '42rem',
     height: '42rem',
   },
@@ -146,8 +146,9 @@ const styles = EStyleSheet.create({
     fontFamily: 'Montserrat-Medium',
   },
   logOutBtn: {
-    marginTop: '40rem',
-    marginBottom: '50rem',
+    position: 'absolute',
+    left: '25rem',
+    bottom: '80rem',
   },
   logOutText: {
     color: '#6A6A6A',
