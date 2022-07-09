@@ -441,6 +441,7 @@ const HomeScreen = () => {
           <Panel panelHeight={panelHeight} contents={contents} />
           <KeyboardAvoidingView
             behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            enabled={Platform.OS === 'ios' ? false : true}
             style={styles.keyboardView}>
             <MainButton
               buttonReaction={buttonReaction}

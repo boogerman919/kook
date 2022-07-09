@@ -8,14 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		00E356F31AD99517003FC87E /* KookTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* KookTests.m */; };
-		11B151669DD36C31F926E68D /* libPods-Kook-KookTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 30BF68BB005C3C448BA4739D /* libPods-Kook-KookTests.a */; };
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
+		34755AEB9CC265F19DCBD9A7 /* libPods-Kook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D9E4DC8C16FCAE82EA400D9B /* libPods-Kook.a */; };
 		48416FBAC24B466CBA4C9160 /* Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 62DE3B1103384A84B6EB8296 /* Montserrat-Medium.ttf */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		883272725DFC9773786A3303 /* libPods-Kook.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 21557B9E9F88A2D7084414C9 /* libPods-Kook.a */; };
 		AD5BFA025FDE41AC97752A05 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 373A169F7FAB49008A19DF32 /* Montserrat-Bold.ttf */; };
+		B7ED6346585FAD681CAD4D32 /* libPods-Kook-KookTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CBDE1027C658D6B6EF04EA9 /* libPods-Kook-KookTests.a */; };
 		D7C0A4D03A39497CBD4A8A3A /* Montserrat-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 77A44B464F17422D832FA5B0 /* Montserrat-SemiBold.ttf */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +33,6 @@
 		00E356EE1AD99517003FC87E /* KookTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KookTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* KookTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = KookTests.m; sourceTree = "<group>"; };
-		08B35F72D7367BEA0D97DA13 /* Pods-Kook-KookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kook-KookTests.release.xcconfig"; path = "Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* Kook.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kook.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = Kook/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = Kook/AppDelegate.m; sourceTree = "<group>"; };
@@ -41,15 +40,16 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Kook/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Kook/main.m; sourceTree = "<group>"; };
 		16B43C01282EFAA000624DCB /* Kook.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Kook.entitlements; path = Kook/Kook.entitlements; sourceTree = "<group>"; };
-		1CED1F500EBE551A41D9B2E4 /* Pods-Kook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kook.debug.xcconfig"; path = "Target Support Files/Pods-Kook/Pods-Kook.debug.xcconfig"; sourceTree = "<group>"; };
-		21557B9E9F88A2D7084414C9 /* libPods-Kook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		30BF68BB005C3C448BA4739D /* libPods-Kook-KookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kook-KookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		373A169F7FAB49008A19DF32 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Bold.ttf"; path = "../assets/fonts/Montserrat-Bold.ttf"; sourceTree = "<group>"; };
-		52E6BA58B0348CA33BA8F49E /* Pods-Kook-KookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kook-KookTests.debug.xcconfig"; path = "Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3CBDE1027C658D6B6EF04EA9 /* libPods-Kook-KookTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kook-KookTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DE3B1103384A84B6EB8296 /* Montserrat-Medium.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-Medium.ttf"; path = "../assets/fonts/Montserrat-Medium.ttf"; sourceTree = "<group>"; };
+		7451817CB8419A71F9EB048A /* Pods-Kook.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kook.debug.xcconfig"; path = "Target Support Files/Pods-Kook/Pods-Kook.debug.xcconfig"; sourceTree = "<group>"; };
 		77A44B464F17422D832FA5B0 /* Montserrat-SemiBold.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Montserrat-SemiBold.ttf"; path = "../assets/fonts/Montserrat-SemiBold.ttf"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = Kook/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		E3FCB82605A221266C93B23B /* Pods-Kook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kook.release.xcconfig"; path = "Target Support Files/Pods-Kook/Pods-Kook.release.xcconfig"; sourceTree = "<group>"; };
+		B3BE0FE91408E3B39D873385 /* Pods-Kook-KookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kook-KookTests.release.xcconfig"; path = "Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests.release.xcconfig"; sourceTree = "<group>"; };
+		C470035EA68785A482EB2E3E /* Pods-Kook-KookTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kook-KookTests.debug.xcconfig"; path = "Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests.debug.xcconfig"; sourceTree = "<group>"; };
+		C7F839DE01C637C65C65455A /* Pods-Kook.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Kook.release.xcconfig"; path = "Target Support Files/Pods-Kook/Pods-Kook.release.xcconfig"; sourceTree = "<group>"; };
+		D9E4DC8C16FCAE82EA400D9B /* libPods-Kook.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Kook.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -58,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				11B151669DD36C31F926E68D /* libPods-Kook-KookTests.a in Frameworks */,
+				B7ED6346585FAD681CAD4D32 /* libPods-Kook-KookTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,7 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				883272725DFC9773786A3303 /* libPods-Kook.a in Frameworks */,
+				34755AEB9CC265F19DCBD9A7 /* libPods-Kook.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -108,8 +108,8 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				21557B9E9F88A2D7084414C9 /* libPods-Kook.a */,
-				30BF68BB005C3C448BA4739D /* libPods-Kook-KookTests.a */,
+				D9E4DC8C16FCAE82EA400D9B /* libPods-Kook.a */,
+				3CBDE1027C658D6B6EF04EA9 /* libPods-Kook-KookTests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -127,10 +127,10 @@
 		816641AD2938B38501B0826C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1CED1F500EBE551A41D9B2E4 /* Pods-Kook.debug.xcconfig */,
-				E3FCB82605A221266C93B23B /* Pods-Kook.release.xcconfig */,
-				52E6BA58B0348CA33BA8F49E /* Pods-Kook-KookTests.debug.xcconfig */,
-				08B35F72D7367BEA0D97DA13 /* Pods-Kook-KookTests.release.xcconfig */,
+				7451817CB8419A71F9EB048A /* Pods-Kook.debug.xcconfig */,
+				C7F839DE01C637C65C65455A /* Pods-Kook.release.xcconfig */,
+				C470035EA68785A482EB2E3E /* Pods-Kook-KookTests.debug.xcconfig */,
+				B3BE0FE91408E3B39D873385 /* Pods-Kook-KookTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -174,12 +174,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "KookTests" */;
 			buildPhases = (
-				361D83609790BF007BFC917D /* [CP] Check Pods Manifest.lock */,
+				D0AA04F061397F4A719054AE /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				25CF2532D12C7D8AEDBFA113 /* [CP] Embed Pods Frameworks */,
-				BE7143C7A6D93A2840E4C7B8 /* [CP] Copy Pods Resources */,
+				ED7690DE9D8606640372321C /* [CP] Embed Pods Frameworks */,
+				8F2C48C81B54253128B705CB /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -195,14 +195,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "Kook" */;
 			buildPhases = (
-				2B61606BF83C20B3AB0CEE98 /* [CP] Check Pods Manifest.lock */,
+				802F13DA80AF026F7EE96FCC /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				7D7E4DE97B0B5C49D94BE6A8 /* [CP] Embed Pods Frameworks */,
-				FEF9B60629A43756E736D247 /* [CP] Copy Pods Resources */,
+				D57650F73774FF962F916BF4 /* [CP] Embed Pods Frameworks */,
+				5C2728BA6CA6C0246D3D465B /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -274,7 +274,7 @@
 /* Begin PBXShellScriptBuildPhase section */
 		00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -282,28 +282,28 @@
 			name = "Bundle React Native code and images";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		25CF2532D12C7D8AEDBFA113 /* [CP] Embed Pods Frameworks */ = {
+		5C2728BA6CA6C0246D3D465B /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Kook/Pods-Kook-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Kook/Pods-Kook-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kook/Pods-Kook-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		2B61606BF83C20B3AB0CEE98 /* [CP] Check Pods Manifest.lock */ = {
+		802F13DA80AF026F7EE96FCC /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -325,7 +325,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		361D83609790BF007BFC917D /* [CP] Check Pods Manifest.lock */ = {
+		8F2C48C81B54253128B705CB /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D0AA04F061397F4A719054AE /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -347,7 +364,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7D7E4DE97B0B5C49D94BE6A8 /* [CP] Embed Pods Frameworks */ = {
+		D57650F73774FF962F916BF4 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -364,21 +381,21 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kook/Pods-Kook-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		BE7143C7A6D93A2840E4C7B8 /* [CP] Copy Pods Resources */ = {
+		ED7690DE9D8606640372321C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kook-KookTests/Pods-Kook-KookTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -398,23 +415,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export RCT_METRO_PORT=\"${RCT_METRO_PORT:=8081}\"\necho \"export RCT_METRO_PORT=${RCT_METRO_PORT}\" > \"${SRCROOT}/../node_modules/react-native/scripts/.packager.env\"\nif [ -z \"${RCT_NO_LAUNCH_PACKAGER+xxx}\" ] ; then\n  if nc -w 5 -z localhost ${RCT_METRO_PORT} ; then\n    if ! curl -s \"http://localhost:${RCT_METRO_PORT}/status\" | grep -q \"packager-status:running\" ; then\n      echo \"Port ${RCT_METRO_PORT} already in use, packager is either not running or not running correctly\"\n      exit 2\n    fi\n  else\n    open \"$SRCROOT/../node_modules/react-native/scripts/launchPackager.command\" || echo \"Can't start packager automatically\"\n  fi\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FEF9B60629A43756E736D247 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kook/Pods-Kook-resources-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Kook/Pods-Kook-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Kook/Pods-Kook-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -450,7 +450,7 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 52E6BA58B0348CA33BA8F49E /* Pods-Kook-KookTests.debug.xcconfig */;
+			baseConfigurationReference = C470035EA68785A482EB2E3E /* Pods-Kook-KookTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -477,7 +477,7 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 08B35F72D7367BEA0D97DA13 /* Pods-Kook-KookTests.release.xcconfig */;
+			baseConfigurationReference = B3BE0FE91408E3B39D873385 /* Pods-Kook-KookTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
@@ -501,13 +501,13 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1CED1F500EBE551A41D9B2E4 /* Pods-Kook.debug.xcconfig */;
+			baseConfigurationReference = 7451817CB8419A71F9EB048A /* Pods-Kook.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Kook/Kook.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PBABYYS97F;
+				DEVELOPMENT_TEAM = 3X6BSS9HFA;
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = Kook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
@@ -530,13 +530,13 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E3FCB82605A221266C93B23B /* Pods-Kook.release.xcconfig */;
+			baseConfigurationReference = C7F839DE01C637C65C65455A /* Pods-Kook.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = Kook/Kook.entitlements;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = PBABYYS97F;
+				DEVELOPMENT_TEAM = 3X6BSS9HFA;
 				INFOPLIST_FILE = Kook/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
