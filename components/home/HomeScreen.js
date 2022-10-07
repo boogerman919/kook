@@ -15,6 +15,7 @@ import {parse} from '@babel/core';
 import Panel from './Panel';
 import MainButton from './MainButton';
 import Button from './Buttons';
+import ChooseBoardButtons from './ChooseBoardButtons';
 import Stopwatch from './Stopwatch';
 import Receipt from './Receipt';
 import Feedback from './Feedback';
@@ -25,7 +26,12 @@ import SubPages2 from '../subPages/subPages2/SubPages2.js';
 import NfcPage from "./NfcPage";
 import NfcManager from 'react-native-nfc-manager';
 //TODO: moving readNdef to Subs.js might broke some things.
-import {timeConverter, readNdef, writeNdef} from '../common/Subs';
+import {
+  timeConverter,
+  readNdef,
+  writeNdef,
+  readWriteNdef,
+} from '../common/Subs';
 
 import Config from '../../Config.json';
 
@@ -38,7 +44,7 @@ EStyleSheet.build({$rem: rem});
 const BOARD_ID = 1;
 
 const HomeScreen = () => {
-  // stages: ['landing', 'nfc', 'started', 'returned', 'charge', 'feedback']
+  // stages: ['landing', 'choosing', 'nfc', 'started', 'returned', 'charge', 'feedback']
   const [currentStage, setCurrentStage] = useState('landing');
 
   // subpages: ['none', 'rideHistory', 'safety', 'faq', 'contactUs', 'legal', 'wallet']
@@ -114,27 +120,53 @@ const HomeScreen = () => {
   // nfc page opacity
   const [showNfcPage, setShowNfcPage] = useState(0);
 
+  // set show choose btn
+  const [showChooseBoardBtn, setShowChooseBoardBtn] = useState(0);
+
+  // which board to unlock
+  const [toUnlock, setToUnlock] = useState('');
+
+  // BUG: can't change toBeUnlockState
+  const changeToNfcStage = board => {
+    setToUnlock(board);
+    setHeightRatio(window.width / window.height);
+    setShowChooseBoardBtn(0);
+    setButtonColor('#ED474A');
+    setButtonText('Cancel');
+    setCurrentStage('nfc');
+    setShowComment(0);
+    setShowNfcPage(1);
+    nfcUnlock();
+  };
+
   // Things that will happen after pressing the main button
   const buttonReaction = currentStage => {
     console.log(currentStage);
     switch (currentStage) {
       case 'landing':
-        setHeightRatio(window.width / window.height);
+        setHeightRatio(1.65);
         setButtonColor('#ED474A');
         setButtonText('Cancel');
-        setCurrentStage('nfc');
-        setShowComment(0);
-        setShowNfcPage(1);
-        nfcUnlock();
+        setCommentText('Choose a board');
+        setShowChooseBoardBtn(1);
+        setCurrentStage('choosing');
         break;
-      case 'nfc':
-        setShowNfcPage(0);
-        NfcManager.cancelTechnologyRequest();
+      case 'choosing':
         setHeightRatio(2.8);
         setButtonText('Surf');
         setButtonColor('#00EBB6');
-        setShowComment(1);
+        setCommentText('$5 / hour');
+        setShowChooseBoardBtn(0);
         setCurrentStage('landing');
+        break;
+      case 'nfc':
+        setShowNfcPage(0);
+        setToUnlock('');
+        NfcManager.cancelTechnologyRequest();
+        setHeightRatio(1.65);
+        setShowComment(1);
+        setShowChooseBoardBtn(1);
+        setCurrentStage('choosing');
         break;
       case 'started':
         setButtonColor('#ED474A');
@@ -254,14 +286,18 @@ const HomeScreen = () => {
 
   const nfcUnlock = async () => {
     NfcManager.start();
-    let unlockSuccess = await writeNdef();
+    console.log(toUnlock);
+    let unlockSuccess = await readWriteNdef(toUnlock);
     if (unlockSuccess) {
       startSession();
     } else {
-      setHeightRatio(2.8);
-      setButtonText('Surf');
-      setButtonColor('#00EBB6');
-      setCurrentStage('landing');
+      setShowNfcPage(0);
+      setToUnlock('');
+      NfcManager.cancelTechnologyRequest();
+      setHeightRatio(1.65);
+      setShowComment(1);
+      setShowChooseBoardBtn(1);
+      setCurrentStage('choosing');
     }
   };
 
@@ -396,6 +432,11 @@ const HomeScreen = () => {
   }, [showSubpage2, subpage2RightOffset]);
 
   var contents = [
+    <ChooseBoardButtons
+      key="chooseBoardButtons"
+      showBtns={showChooseBoardBtn}
+      action={changeToNfcStage}
+    />,
     <NfcPage key="nfcPage" showNfcPage={showNfcPage} />,
     <Receipt
       key="receipt"

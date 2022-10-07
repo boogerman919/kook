@@ -75,9 +75,60 @@ const writeNdef = async () => {
   return result;
 };
 
+const readWriteNdef = async board => {
+  // console.log(board);
+  let result = false;
+  try {
+    // register for the NFC tag with NDEF in it
+    await NfcManager.requestTechnology(NfcTech.Ndef);
+    // the resolved tag object will contain `ndefMessage` property
+    const tag = await NfcManager.getTag();
+    let payload = tag.ndefMessage[0].payload;
+    let message = '';
+    for (let i = 3; i < payload.length; i++) {
+      message += String.fromCharCode(payload[i]);
+    }
+    // TODO: change back to "locked"
+    // if (message.length > 0) {
+    //   console.warn('message read: ' + message);
+    // } else {
+    //   console.warn('no message');
+    // }
+
+    // write
+    // switch (board) {
+    //   case 'left': 
+    //     message += '1';
+    //     break;
+    //   case 'right':
+    //     message += '11';
+    //     break;
+    // }
+
+    console.warn(message);
+
+    const bytes = Ndef.encodeMessage([Ndef.textRecord(message)]);
+
+    if (bytes) {
+      console.log(bytes);
+      await NfcManager.ndefHandler.writeNdefMessage(bytes);
+      result = true;
+    }
+
+  } catch (e) {
+    console.log(e.message);
+  } finally {
+    // stop the nfc scanning
+    NfcManager.cancelTechnologyRequest();
+  }
+
+  return result;
+};
+
 module.exports = {
   countChar: countChar,
   timeConverter: timeConverter,
   readNdef: readNdef,
   writeNdef: writeNdef,
+  readWriteNdef: readWriteNdef,
 };

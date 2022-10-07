@@ -54,6 +54,7 @@ const Receipt = ({usedTime, receiptOpacity}) => {
         styles.container,
         {
           opacity: receiptOpacity,
+          display: receiptOpacity == 1 ? 'flex' : 'none',
         },
       ]}>
       <View key="title container" style={styles.titleContainer}>
